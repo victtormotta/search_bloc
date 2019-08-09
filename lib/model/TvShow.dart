@@ -14,11 +14,19 @@ class TvShow {
   // construtor de fábrica que recebe um mapa de string dinânico e retorna um objeto
   // da mesma classe;
   factory TvShow.fromJson(Map<String, dynamic> json) {
+
+    String returnImageValue(json) {
+      if (json["show"]["image"] != null)
+        return json["show"]["image"]["medium"] as String;
+      else
+        return "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png";
+    }
+
     return TvShow(
         name: json["show"]["name"] as String,
         url: json["show"]["url"] as String,
         /* genres: json["genres"] as List, */
-        image: (json["show"]["image"] as Map<String, dynamic>)["medium"] as String,
+        image: returnImageValue(json),
         status: json["show"]["status"] as String,
         summary: json["show"]["summary"] as String,
         /* rating: (json["rating"] as Map<String, dynamic>)["average"] as String */
