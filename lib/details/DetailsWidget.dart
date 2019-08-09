@@ -1,8 +1,8 @@
+import 'package:tvshow_search_bloc/model/TvShow.dart';
 import 'package:flutter/material.dart';
-import 'package:github_search/models/SearchItem.dart';
 
 class DetailsWidget extends StatefulWidget {
-  final SearchItem item;
+  final TvShow item;
 
   const DetailsWidget({Key key, this.item}) : super(key: key);
 
@@ -27,10 +27,10 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 height: 20,
               ),
               Hero(
-                tag: widget.item.url,
+                tag: widget.item.url ?? "url",
                 child: CircleAvatar(
                   radius: 60,
-                  backgroundImage: NetworkImage(widget.item?.avatarUrl ??
+                  backgroundImage: NetworkImage(widget.item?.image ??
                       "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png"),
                 ),
               ),
@@ -38,7 +38,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                 height: 10,
               ),
               Text(
-                widget.item.fullName,
+                widget.item.name ?? "name",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -51,7 +51,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               ),
 
               Text(
-                widget.item.url,
+                widget.item.url ?? "url",
                 style: TextStyle(
                   fontSize: 14,
                   color: Colors.grey[500],

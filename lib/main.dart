@@ -1,23 +1,24 @@
-import 'dart:async';
-
-import 'package:dio/dio.dart';
+import 'package:tvshow_search_bloc/model/TvShow.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:github_search/details/DetailsWidget.dart';
-import 'package:github_search/models/SearchItem.dart';
-import 'package:github_search/models/SearchResult.dart';
+import 'package:tvshow_search_bloc/model/ListFromSearchTvMaze.dart';
+
+import 'blocs/SearchBloc.dart';
+import 'details/DetailsWidget.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Tv Show',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'By Tv Maze'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -32,64 +33,50 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<SearchItem> _githubResponse = List<SearchItem>();
-  String text = "";
+  // BEGIN BLOC
+  SearchBloc _searchBloc;
 
-  Future<void> _search(String text) async {
-    try {
-      Response response = await Dio()
-          .get("https://api.github.com/search/repositories?q=${text}");
-
-      List<SearchItem> searchedItems =
-          SearchResult.fromJson(response.data).items;
-
-      setState(() {
-        _githubResponse = searchedItems;
-      });
-    } on DioError catch (e) {
-      print(e);
-    }
+  // TODO o metodo BLOC no init state ira ser executado uma unica vez antes do componente ser montado;
+  @override
+  void initState() {
+    _searchBloc = new SearchBloc();
+    super.initState();
   }
 
-  Future<void> _timeSearch(String searchText) async {
-    if (searchText != text) {
-      Timer(Duration(milliseconds: 500), () {
-        _search(text);
-      });
-    }
+  @override
+  void dispose() {
+    _searchBloc?.dispose();
+    super.dispose();
   }
+  // END BLOC
 
+  // COM BLOC
   Widget _textField() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
-        onChanged: (value) {
-          if (value.length > 2) {
-            _timeSearch(value);
-            text = value;
-          }
-        },
+        // cada vez que for digitado algo no textfield, o metodo onchaged ira ser chamado e add o q
+        // o usuario digitou no fluxo
+        onChanged: _searchBloc.searchEvent.add,
         decoration: InputDecoration(
             border: OutlineInputBorder(),
-            hintText: "Digite o nome do repositório",
-            labelText: "Pesquisa"),
+            hintText: "Tv Show name...",
+            labelText: "Search"),
       ),
     );
   }
 
-  Widget _items(SearchItem item) {
-    print("teste");
-
+  Widget _items(TvShow item) {
     return ListTile(
       leading: Hero(
-        tag: item.url,
+        tag: item.url ?? "url",
         child: CircleAvatar(
-          backgroundImage: NetworkImage(item?.avatarUrl ??
+          backgroundImage: NetworkImage(item?.image ??
               "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png"),
         ),
       ),
-      title: Text(item?.fullName ?? "title"),
-      subtitle: Text(item?.url ?? "url"),
+      title: Text(item?.name ?? "nome"),
+      subtitle: Text(item?.status ?? "status"),
       onTap: () => Navigator.push(
           context,
           CupertinoPageRoute(
@@ -103,24 +90,30 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Github Search"),
+        title: Text("TV Shows Search"),
       ),
       body: ListView(
         children: <Widget>[
           _textField(),
-          _githubResponse.isNotEmpty
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  itemCount: _githubResponse.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    SearchItem item = _githubResponse[index];
-                    return _items(item);
-                  },
-                )
-              : Center(
-                  child: CircularProgressIndicator(),
-                ),
+          // StreamBuilder -> widget que é capaz de modificar o estado dele ouvind um fluxo de dados
+          StreamBuilder<ListFromSearchTvMaze>(
+              stream: _searchBloc.apiResultFlux,
+              builder:
+                  (BuildContext context, AsyncSnapshot<ListFromSearchTvMaze> snapshot) {
+                return snapshot.hasData
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        physics: ClampingScrollPhysics(),
+                        itemCount: snapshot.data.tvShows.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          TvShow item = snapshot.data.tvShows[index];
+                          return _items(item);
+                        },
+                      )
+                    : Center(
+                        child: CircularProgressIndicator(),
+                      );
+              })
         ],
       ),
     );
