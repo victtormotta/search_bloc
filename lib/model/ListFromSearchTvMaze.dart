@@ -1,4 +1,4 @@
-import 'package:tvmaze_search_bloc/model/TvShow.dart';
+import '../model/TvShow.dart';
 
 class ListFromSearchTvMaze {
   final List<TvShow> tvShows;

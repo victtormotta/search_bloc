@@ -1,4 +1,4 @@
-import 'package:tvmaze_search_bloc/model/TvShow.dart';
+import '../model/TvShow.dart';
 import 'package:flutter/material.dart';
 
 class DetailsWidget extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/blocs/SearchBloc.dart';
-import 'package:tvmaze_search_bloc/model/ListFromSearchTvMaze.dart';
-import 'package:tvmaze_search_bloc/model/TvShow.dart';
-import 'package:tvmaze_search_bloc/details/DetailsWidget.dart';
+import '../blocs/SearchBloc.dart';
+import '../model/ListFromSearchTvMaze.dart';
+import '../model/TvShow.dart';
+import '../details/DetailsWidget.dart';
 
 class HomePageBloc extends StatefulWidget {
   HomePageBloc({Key key, this.title}) : super(key: key);

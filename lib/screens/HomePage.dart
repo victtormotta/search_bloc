@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/model/ListFromSearchTvMaze.dart';
-import 'package:tvmaze_search_bloc/model/TvShow.dart';
-import 'package:tvmaze_search_bloc/details/DetailsWidget.dart';
+import '../model/ListFromSearchTvMaze.dart';
+import '../model/TvShow.dart';
+import '../details/DetailsWidget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);

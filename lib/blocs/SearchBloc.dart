@@ -1,5 +1,5 @@
-import 'package:tvmaze_search_bloc/model/ListFromSearchTvMaze.dart';
-import 'package:tvmaze_search_bloc/services/data/Service.dart';
+import '../model/ListFromSearchTvMaze.dart';
+import '../services/data/Service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SearchBloc {

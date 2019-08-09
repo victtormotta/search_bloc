@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:tvmaze_search_bloc/model/ListFromSearchTvMaze.dart';
+import '../../model/ListFromSearchTvMaze.dart';
 
 class Service{
   // usado para requisição
