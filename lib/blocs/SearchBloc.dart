@@ -2,21 +2,9 @@ import '../model/ListFromSearchTvMaze.dart';
 import '../services/data/Service.dart';
 import 'package:rxdart/rxdart.dart';
 
-class SearchBloc {
 
-  Service _service = new Service();
-
-  // esse BehaviorSubject será tipado para receber apenas string
-  final _searchController = new BehaviorSubject<String>();
-  // criando get
-  Observable<String> get searchFlux => _searchController.stream;
-  // a forma que teremos para add eventos ao fluxo
-  Sink<String> get searchEvent => _searchController.sink;
-
-  Observable<ListFromSearchTvMaze> apiResultFlux;
-
-  /*
-  o fluxo atual recebe string então, é feito uma transformação p/ objeto da classe SearchResult;
+/*
+  O fluxo atual recebe string então, é feito uma transformação p/ objeto da classe SearchResult;
 
   distinct -> valores distintos;
 
@@ -31,7 +19,20 @@ class SearchBloc {
   basicamente, para de ouvir qualquer outro estado; ouve sempre o mais atual do asyncMap;
 
   */
-  // RESUMO: um filtro com parametros, e p/ remover o penultimo termo e só é enviar p/ consulta o último;
+// RESUMO: um filtro com parametros, e p/ remover o penultimo termo e só é enviar p/ consulta o último;
+
+class SearchBloc {
+
+  Service _service = new Service();
+
+  // esse BehaviorSubject será tipado para receber apenas string
+  final _searchController = new BehaviorSubject<String>();
+  // criando get
+  Observable<String> get searchFlux => _searchController.stream;
+  // a forma que teremos para add eventos ao fluxo
+  Sink<String> get searchEvent => _searchController.sink;
+
+  Observable<ListFromSearchTvMaze> apiResultFlux;
 
   SearchBloc(){
     apiResultFlux = searchFlux
