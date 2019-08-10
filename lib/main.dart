@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tvmaze_search_bloc/screens/HomeScreen.dart';
+import 'package:tvmaze_search_bloc/screens/TvShowsPage.dart';
+import 'package:tvmaze_search_bloc/screens/swiper/HorizontalSwiper.dart';
 import 'screens/HomePage.dart';
 import 'screens/HomePageBloc.dart';
 
@@ -12,10 +15,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tv Show',
       theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          primaryColor: Color.fromARGB(255, 4, 125, 141)),
-      home: HomePageBloc(title: 'By Tv Maze'),
-      /* home: HomePage(title: 'By Tv Maze'), */
+          primarySwatch: Colors.yellow,
+          canvasColor: Colors.white10
+      ),
+//          home: HomePageBloc(title: 'By Tv Maze'),
+//        home: HomePage(title: 'By Tv Maze'),
+      home: HorizontalSwiper(),
+//      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
