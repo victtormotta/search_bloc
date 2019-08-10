@@ -22,8 +22,11 @@ class _MyHomePageState extends State<HomePage> {
 
   Future<void> _search(String text) async {
     try {
+//      Response response = await Dio()
+//          .get("http://api.tvmaze.com/search/shows?q=${text}");
+
       Response response = await Dio()
-          .get("http://api.tvmaze.com/search/shows?q=${text}");
+          .get("http://api.tvmaze.com/shows");
 
       List<TvShow> searchedItems =
           ListFromSearchTvMaze
@@ -90,7 +93,7 @@ class _MyHomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Github Search"),
+        title: Text("TV Shows Search"),
       ),
       body: ListView(
         children: <Widget>[
