@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tvmaze_search_bloc/tiles/TvShowTile.dart';
 import '../blocs/SearchBloc.dart';
 import '../model/ListFromSearchTvMaze.dart';
 import '../model/TvShow.dart';
@@ -35,48 +36,59 @@ class _MyHomePageStateBloc extends State<HomePageBloc> {
 
   // COM BLOC
   Widget _textField() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        // cada vez que for digitado algo no textfield, o metodo onchaged ira ser chamado e add o q
-        // o usuario digitou no fluxo
-        onChanged: _searchBloc.searchEvent.add,
-        decoration: InputDecoration(
+    return Container(
+      color: Colors.black26,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: TextField(
+          style: TextStyle(color: Colors.white),
+          // cada vez que for digitado algo no textfield, o metodo onchaged ira ser chamado e add o q
+          // o usuario digitou no fluxo
+          onChanged: _searchBloc.searchEvent.add,
+          decoration: InputDecoration(
+            prefixIcon: Icon(CupertinoIcons.search, color: Colors.white,),
             border: OutlineInputBorder(),
             hintText: "Tv Show name...",
-            labelText: "Search"),
-      ),
+            hintStyle: TextStyle(color: Colors.white30),
+//            labelText: "Search"
+          ),
+        ),
+      )
     );
+
   }
 
-  Widget _items(TvShow item) {
-    return ListTile(
-      leading: Hero(
-        tag: item.url ?? "url",
-        child: CircleAvatar(
-          backgroundImage: NetworkImage(item?.image ??
-              "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png"),
+  Widget _items(TvShow item, String tag_name) {
+    return Container(
+      height: 200,
+      child: GestureDetector(
+        child: Hero(
+          tag: tag_name,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(18.0),
+            child: FadeInImage(
+              image: NetworkImage(item.image),
+              fit: BoxFit.cover,
+              placeholder: NetworkImage(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
+            ),
+          ),
         ),
+        onTap: () => Navigator.push(
+            context,
+            CupertinoPageRoute(
+                builder: (context) => DetailsWidget(item: item
+                ))),
       ),
-      title: Text(item?.name ?? "nome"),
-      subtitle: Text(item?.status ?? "status"),
-      onTap: () =>
-          Navigator.push(
-              context,
-              CupertinoPageRoute(
-                  builder: (context) =>
-                      DetailsWidget(
-                        item: item,
-                      ))),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("TV Shows Search"),
-      ),
+//      appBar: AppBar(
+//        title: Text("TV Shows Search"),
+//      ),
       body: ListView(
         children: <Widget>[
           _textField(),
@@ -87,18 +99,37 @@ class _MyHomePageStateBloc extends State<HomePageBloc> {
                   (BuildContext context,
                   AsyncSnapshot<ListFromSearchTvMaze> snapshot) {
                 return snapshot.hasData
-                    ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  itemCount: snapshot.data.tvShows.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    TvShow item = snapshot.data.tvShows[index];
-                    return _items(item);
-                  },
+                    ? GridView.builder(
+                    scrollDirection: Axis.vertical,
+                    physics: PageScrollPhysics(),
+                    shrinkWrap: true,
+                    padding: EdgeInsets.all(8.0),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      mainAxisSpacing: 4.0,
+                      crossAxisSpacing: 4.0,
+                      childAspectRatio: 0.64,
+                    ),
+                    itemCount: snapshot.data.tvShows.length,
+                    itemBuilder: (context, index){
+                      TvShow item = snapshot.data.tvShows[index];
+                      return TvShowTile(item);
+                    }
                 )
-                    : Center(
+                // OLD
+//                ListView.builder(
+//                  shrinkWrap: true,
+//                  physics: ClampingScrollPhysics(),
+//                  itemCount: snapshot.data.tvShows.length,
+//                  itemBuilder: (BuildContext context, int index) {
+//                    TvShow item = snapshot.data.tvShows[index];
+//                    String tag_name = item.url + "_search";
+//                    return _items(item, tag_name);
+//                  },
+//                )
+                    : Container(height: 500, child: Center(
                   child: CircularProgressIndicator(),
-                );
+                ));
               })
         ],
       ),
