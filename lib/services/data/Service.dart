@@ -6,7 +6,6 @@ class Service{
   // usado para requisição
   final Dio dio = new Dio();
   String _tvMaze = "http://api.tvmaze.com/search/shows?q=";
-  final String _tvMazeAllShows = "http://api.tvmaze.com/singlesearch/shows?q= &embed=episodes";
 
   Future<ListFromSearchTvMaze> search(String term) async {
     try{
