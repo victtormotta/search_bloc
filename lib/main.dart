@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/screens/HomeScreen.dart';
-import 'package:tvmaze_search_bloc/screens/TvShowsPage.dart';
 import 'package:tvmaze_search_bloc/screens/swiper/HorizontalSwiper.dart';
 import 'screens/HomePage.dart';
 import 'screens/HomePageBloc.dart';
