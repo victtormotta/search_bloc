@@ -15,13 +15,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tv Show',
       theme: ThemeData(
-          primarySwatch: Colors.yellow,
+          primarySwatch: Colors.teal,
           canvasColor: Colors.white10
       ),
 //          home: HomePageBloc(title: 'By Tv Maze'),
 //        home: HomePage(title: 'By Tv Maze'),
-      home: HorizontalSwiper(),
-//      home: HomeScreen(),
+//      home: HorizontalSwiper(title: 'HorizontalSwiper'),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
