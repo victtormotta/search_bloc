@@ -2,7 +2,7 @@
 
 A Flutter project to search and display TV Shows from Tvmaze API - http://www.tvmaze.com/api.
 
-![gif_tvmaze](showoff/tvmaze01.gif)
+![gif_tvmaze](https://gfycat.com/insistentcomplicatedarrowworm)
 
 ## Getting Started
 
