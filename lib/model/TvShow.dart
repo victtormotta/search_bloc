@@ -17,53 +17,53 @@ class TvShow {
     print(json);
 
     String returnNameValue(json) {
-      if (json["name"] != null)
-        return json["name"] as String;
-      else if (json["show"]["name"] != null){
-        return json["show"]["name"] as String;
-      }
-      else
-        return "name_null";
+      if(json.containsKey("show")) {
+        return json["show"]["name"] != null ?
+        json["show"]["name"] as String
+            : "name_null";
+      } else return json["name"] != null ?
+      json["name"] as String
+          : "name_null";
     }
 
     String returnUrlValue(json) {
-      if (json["url"] != null)
-        return json["url"] as String;
-      else if (json["show"]["url"] != null){
-        return json["show"]["url"] as String;
-      }
-      else
-        return "url_null";
+      if(json.containsKey("show")) {
+        return json["show"]["url"] != null ?
+        json["show"]["url"] as String
+            : "url_null";
+      } else return json["url"] != null ?
+      json["url"] as String
+          : "url_null";
     }
     
     String returnImageValue(json) {
-      if (json["image"] != null)
-        return json["image"]["original"] as String;
-      else if (json["show"]["image"]["original"] != null){
-        return json["show"]["image"]["original"] as String;
-      }
-      else
-        return "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png";
+      if(json.containsKey("show") && json["show"]["image"] != null) {
+        return json["show"]["image"] != null ?
+        json["show"]["image"]["original"] as String
+            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw";
+      } else return json["image"] != null ?
+      json["image"]["original"] as String
+          : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw";
     }
 
     String returnStatusValue(json) {
-      if (json["status"] != null)
-        return json["status"] as String;
-      else if (json["show"]["status"] != null){
-        return json["show"]["status"] as String;
-      }
-      else
-        return "status_null";
+      if(json.containsKey("show")) {
+        return json["show"]["status"] != null ?
+        json["show"]["status"] as String
+            : "url_null";
+      } else return json["status"] != null ?
+      json["status"] as String
+          : "status_null";
     }
 
     String returnSummaryValue(json) {
-      if (json["summary"] != null)
-        return json["summary"] as String;
-      else if (json["show"]["summary"] != null){
-        return json["show"]["summary"] as String;
-      }
-      else
-        return "summary_null";
+      if(json.containsKey("show")) {
+        return json["show"]["summary"] != null ?
+        json["show"]["summary"] as String
+            : "summary_null";
+      } else return json["summary"] != null ?
+      json["summary"] as String
+          : "summary_null";
     }
 
     return TvShow(
