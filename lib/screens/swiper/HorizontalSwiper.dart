@@ -2,133 +2,158 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:tvmaze_search_bloc/blocs/LoadBloc.dart';
+import 'package:tvmaze_search_bloc/details/DetailsWidget.dart';
 import 'package:tvmaze_search_bloc/model/ListFromSearchTvMaze.dart';
 import 'package:tvmaze_search_bloc/model/TvShow.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-import 'package:tvmaze_search_bloc/screens/TvShowDetailPage.dart';
 
-class HorizontalSwiper extends StatelessWidget {
+class HorizontalSwiper extends StatefulWidget {
+  HorizontalSwiper({Key key, this.title}) : super(key: key);
 
+  final String title;
+
+  @override
+  _HorizontalSwiperBloc createState() => _HorizontalSwiperBloc();
+}
+
+class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
   final LoadBloc _loadBloc = new LoadBloc();
 
-  Widget _items(TvShow item) {
-    return ListTile(
-      leading: Container(
+  Widget _items(TvShow item, String tag_name) {
+    // ROUNDED:
+    return Container(
         child: GestureDetector(
           child: Hero(
-            tag: item.status,
+            tag: tag_name,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8.0),
               child: FadeInImage(
                 image: NetworkImage(item.image),
                 fit: BoxFit.cover,
-                placeholder: NetworkImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
+                placeholder: NetworkImage(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw"),
               ),
             ),
           ),
+          onTap: () => Navigator.push(
+              context,
+              CupertinoPageRoute(
+                  builder: (context) => DetailsWidget(item:item,
+                      ))),
         ),
-      ),
-    );
+      );
     // DEFAULT:
-//    return new Image.network(item.image,
-//      fit: BoxFit.fill,
-//    );
+//    return new Container(
+//        child: GestureDetector(
+//            child: Image.network(
+//              item.image,
+//              fit: BoxFit.fill,
+//            ),
+//            onTap: () => Navigator.push(
+//                context,
+//                CupertinoPageRoute(
+//                    builder: (context) => DetailsWidget(
+//                          item: item,
+//                        )))));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Text("TvMaze"),
+//      appBar: AppBar(title: Text("TvMaze"),
 //      ),
       body: ListView(
         children: <Widget>[
-          // StreamBuilder -> widget que é capaz de modificar o estado dele ouvind um fluxo de dados
+          Container(height: 30),
+          logoTvMaze(),
+//          title(),
           recomendationsFromTvMaze(),
-          Container(height: 80),
-          title(),
+          Container(height: 50),
+//          title(),
+//          Container(height: 10),
 //          genresFromTvMaze(),
         ],
       ),
     );
   }
 
-  Text title(){
+  Text title() {
     return Text(
       'Recomendations',
-      style: TextStyle(fontSize: 15, color: Colors.yellowAccent,),
-      textAlign: TextAlign.start,
+      style: TextStyle(
+        fontSize: 15,
+        fontWeight: FontWeight.bold,
+        color: Colors.teal,
+      ),
+      textAlign: TextAlign.justify,
     );
   }
 
-  Container logoTvMaze(){
+  Container logoTvMaze() {
     return new Container(
-      height: 60,
-     child:
-     Image.network(
-       "https://static.tvmaze.com/images/tvm-header-logo.png",
-       fit: BoxFit.fitHeight,
-     ),
+      height: 30,
+      child: Image.network(
+        "https://static.tvmaze.com/images/tvm-header-logo.png",
+        fit: BoxFit.fitHeight,
+      ),
     );
   }
 
-  StreamBuilder recomendationsFromTvMaze(){
+  StreamBuilder recomendationsFromTvMaze() {
     return StreamBuilder<ListFromSearchTvMaze>(
         stream: _loadBloc.apiResultFlux,
         builder: (BuildContext context,
             AsyncSnapshot<ListFromSearchTvMaze> snapshot) {
           return snapshot.hasData
               ? Container(
-              height: 480,
-              child: Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  TvShow item = snapshot.data.tvShows[index];
-                  return _items(item);
-                },
-                indicatorLayout: PageIndicatorLayout.COLOR,
-                autoplay: true,
-                itemCount: 5,
-                pagination: SwiperPagination(),
-                control: SwiperControl(),
-                containerHeight: 0.9,
-                itemWidth: 480,
-                itemHeight: 480,
-                layout: SwiperLayout.TINDER,
-              ))
-              : Center(
+                  height: 480,
+                  child: Swiper(
+                    itemBuilder: (BuildContext context, int index) {
+                      TvShow item = snapshot.data.tvShows[index];
+                      String tag_name = item.url + "_recomendations";
+                      return _items(item, tag_name);
+                    },
+                    indicatorLayout: PageIndicatorLayout.COLOR,
+                    autoplay: true,
+                    itemCount: 5,
+                    pagination: SwiperPagination(),
+                    containerHeight: 0.9,
+                    itemWidth: 480,
+                    itemHeight: 480,
+                    layout: SwiperLayout.TINDER,
+                  ))
+              : Container(height: 500, child: Center(
             child: CircularProgressIndicator(),
-          );
+          ));
         });
   }
 
-  StreamBuilder genresFromTvMaze(){
+  StreamBuilder genresFromTvMaze() {
     return StreamBuilder<ListFromSearchTvMaze>(
         stream: _loadBloc.apiResultFlux,
         builder: (BuildContext context,
             AsyncSnapshot<ListFromSearchTvMaze> snapshot) {
           return snapshot.hasData
               ? Container(
-              height: 150,
-              child: Swiper(
-                itemBuilder: (BuildContext context, int index) {
-                  TvShow item = snapshot.data.tvShows[index];
-                  return _items(item);
-                },
-                indicatorLayout: PageIndicatorLayout.COLOR,
-                autoplay: true,
-                itemCount: 5,
-                pagination: SwiperPagination(),
-                control: SwiperControl(),
-                containerHeight: 0.9,
-                itemWidth: 100,
-                itemHeight: 150,
-                layout: SwiperLayout.STACK,
-              ))
+                  height: 150,
+                  child: Swiper(
+                    itemBuilder: (BuildContext context, int index) {
+                      TvShow item = snapshot.data.tvShows[index];
+                      String tag_name = item.url + "_genres";
+                      return _items(item, tag_name);
+                    },
+                    indicatorLayout: PageIndicatorLayout.COLOR,
+                    autoplay: true,
+                    itemCount: 5,
+                    control: SwiperControl(),
+                    containerHeight: 0.9,
+                    itemWidth: 100,
+                    itemHeight: 150,
+                    layout: SwiperLayout.STACK,
+                  ))
               : Center(
-            child: CircularProgressIndicator(),
-          );
+                  child: CircularProgressIndicator(),
+                );
         });
   }
-
-
 }
