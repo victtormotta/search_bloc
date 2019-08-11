@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tvmaze_search_bloc/tiles/TvShowTile.dart';
 import '../model/ListFromSearchTvMaze.dart';
 import '../model/TvShow.dart';
 import '../details/DetailsWidget.dart';
@@ -22,11 +23,11 @@ class _MyHomePageState extends State<HomePage> {
 
   Future<void> _search(String text) async {
     try {
-//      Response response = await Dio()
-//          .get("http://api.tvmaze.com/search/shows?q=${text}");
-
       Response response = await Dio()
-          .get("http://api.tvmaze.com/shows");
+          .get("http://api.tvmaze.com/search/shows?q=${text}");
+
+//      Response response = await Dio()
+//          .get("http://api.tvmaze.com/shows");
 
       List<TvShow> searchedItems =
           ListFromSearchTvMaze
@@ -53,6 +54,7 @@ class _MyHomePageState extends State<HomePage> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: TextField(
+        style: TextStyle(color: Colors.white70),
         onChanged: (value) {
           if (value.length > 2) {
             _timeSearch(value);
@@ -62,6 +64,7 @@ class _MyHomePageState extends State<HomePage> {
         decoration: InputDecoration(
             border: OutlineInputBorder(),
             hintText: "Tv Show name...",
+            hintStyle: TextStyle(color: Colors.white30),
             labelText: "Search"),
       ),
     );
@@ -83,8 +86,7 @@ class _MyHomePageState extends State<HomePage> {
               context,
               CupertinoPageRoute(
                   builder: (context) =>
-                      DetailsWidget(
-                        item: item,
+                      DetailsWidget(item:item,
                       ))),
     );
   }
@@ -92,22 +94,39 @@ class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("TV Shows Search"),
-      ),
+//      appBar: AppBar(
+//        title: Text("TV Shows Search"),
+//      ),
       body: ListView(
         children: <Widget>[
           _textField(),
           _tvShowResponse.isNotEmpty
-              ? ListView.builder(
-            shrinkWrap: true,
-            physics: ClampingScrollPhysics(),
-            itemCount: _tvShowResponse.length,
-            itemBuilder: (BuildContext context, int index) {
-              TvShow item = _tvShowResponse[index];
-              return _items(item);
-            },
+              ? GridView.builder(
+              scrollDirection: Axis.vertical,
+              physics: PageScrollPhysics(),
+              shrinkWrap: true,
+              padding: EdgeInsets.all(8.0),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 3,
+                mainAxisSpacing: 4.0,
+                crossAxisSpacing: 4.0,
+                childAspectRatio: 0.65,
+              ),
+              itemCount: _tvShowResponse.length,
+              itemBuilder: (context, index){
+                TvShow item = _tvShowResponse[index];
+                return TvShowTile(item);
+              }
           )
+//          ListView.builder(
+//            shrinkWrap: true,
+//            physics: ClampingScrollPhysics(),
+//            itemCount: _tvShowResponse.length,
+//            itemBuilder: (BuildContext context, int index) {
+//              TvShow item = _tvShowResponse[index];
+//              return _items(item);
+//            },
+//          )
               : Center(
             child: CircularProgressIndicator(),
           ),
