@@ -2,6 +2,7 @@ class TvShow {
   /*
   Classe que representa cada item da pesquisa;
  */
+  final String id;
   final String name;
   final String url;
   /* final List genres; */
@@ -9,12 +10,20 @@ class TvShow {
   final String status;
   final String summary;
   /* final String rating; */
+  final String platform;
+  final String premiered;
 
-  TvShow({this.name, this.url, /* this.genres, */ this.image, this.status, this.summary, /* this.rating */});
+  TvShow({this.id, this.name, this.url, /* this.genres, */ this.image, this.status, this.summary, /* this.rating */ this.platform, this.premiered});
   // construtor de fábrica que recebe um mapa de string dinânico e retorna um objeto
   // da mesma classe;
   factory TvShow.fromJson(Map<String, dynamic> json) {
     print(json);
+
+    String returnIdValue(json) {
+      if(json.containsKey("show")) {
+        return json["show"]["id"].toString();
+      } else return json["id"].toString();
+    }
 
     String returnNameValue(json) {
       if(json.containsKey("show")) {
@@ -66,13 +75,47 @@ class TvShow {
           : "summary_null";
     }
 
+    String returnNetworkValue(json) {
+        if(json.containsKey("show") && json["show"]["network"] != null) {
+          return json["show"]["network"] != null ?
+          json["show"]["network"]["name"] as String
+              : "null";
+        } else return json["network"] != null ?
+        json["network"]["name"] as String
+            : "null";
+      }
+
+    String returnWebChannelValue(json) {
+      if(json.containsKey("show") && json["show"]["webChannel"] != null) {
+        return json["show"]["webChannel"] != null ?
+        json["show"]["webChannel"]["name"] as String
+            : "null";
+      } else return json["webChannel"] != null ?
+      json["webChannel"]["name"] as String
+          : "null";
+    }
+
+
+    String returnPremieredValue(json) {
+      if(json.containsKey("show")) {
+        return json["show"]["premiered"] != null ?
+        json["show"]["premiered"] as String
+            : "premiered_null";
+      } else return json["premiered"] != null ?
+      json["premiered"] as String
+          : "premiered_null";
+    }
+
     return TvShow(
+        id: returnIdValue(json),
         name: returnNameValue(json),
         url: returnUrlValue(json),
         /* genres: json["genres"] as List, */
         image: returnImageValue(json),
         status: returnStatusValue(json),
         summary: returnSummaryValue(json),
+        platform:  returnNetworkValue(json) != "null" ? returnNetworkValue(json) : returnWebChannelValue(json),
+        premiered: returnPremieredValue(json).substring(0, 4),
         /* rating: (json["rating"] as Map<String, dynamic>)["average"] as String */
     );
   }
