@@ -16,7 +16,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.black26,
+        title: Text(widget.item.name + " - " + widget.item.platform ?? "name tvshow")),
       body: SingleChildScrollView(
         child: Container(
           width: size.width,
@@ -24,39 +26,45 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               Container(
-                height: 20,
+                height: 10,
               ),
               Hero(
                 tag: widget.item.url ?? "url",
-                child: CircleAvatar(
-                  radius: 60,
-                  backgroundImage: NetworkImage(widget.item?.image ??
-                      "https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/VCHXZQKsxil3lhgr4/animation-loading-circle-icon-on-white-background-with-alpha-channel-4k-video_sjujffkcde_thumbnail-full01.png"),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(40.0),
+                  child: FadeInImage(
+                    image: NetworkImage(widget.item.image),
+                    fit: BoxFit.cover,
+                    height: size.height - 30,
+                    width: size.width - 20,
+                    placeholder: NetworkImage(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
+                  ),
                 ),
               ),
               Container(
                 height: 10,
               ),
-              Text(
-                widget.item.name ?? "name",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  color: Colors.grey[700],
-                ),
-              ),
+//              Text(
+//                widget.item.name ?? "name",
+//                style: TextStyle(
+//                  fontWeight: FontWeight.bold,
+//                  fontSize: 18,
+//                  color: Colors.grey[700],
+//                ),
+//              ),
 
-              Container(
-                height: 10,
-              ),
-
-              Text(
-                widget.item.url ?? "url",
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[500],
-                ),
-              ),
+//              Container(
+//                height: 10,
+//              ),
+//
+//              Text(
+//                widget.item.url ?? "url",
+//                style: TextStyle(
+//                  fontSize: 14,
+//                  color: Colors.grey[500],
+//                ),
+//              ),
             ],
           ),
         ),
