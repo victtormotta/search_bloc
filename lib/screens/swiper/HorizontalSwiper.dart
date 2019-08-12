@@ -26,7 +26,7 @@ class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
           child: Hero(
             tag: tag_name,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderRadius.circular(18.0),
               child: FadeInImage(
                 image: NetworkImage(item.image),
                 fit: BoxFit.cover,
