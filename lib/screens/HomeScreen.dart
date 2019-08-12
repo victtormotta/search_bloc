@@ -15,14 +15,17 @@ class HomeScreen extends StatelessWidget {
       child: DefaultTextStyle(
         style: CupertinoTheme.of(context).textTheme.textStyle,
         child: CupertinoTabScaffold(
+          backgroundColor: Colors.white12,
           tabBar: CupertinoTabBar(
-            backgroundColor: Colors.black,
+            backgroundColor: Colors.black12,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.home),
+                icon: Icon(CupertinoIcons.home, color: Colors.black,),
+                activeIcon: Icon(CupertinoIcons.home, color: Colors.white70,)
               ),
               BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.search),
+                icon: Icon(CupertinoIcons.search, color: Colors.black,),
+                  activeIcon: Icon(CupertinoIcons.search, color: Colors.white70, )
               ),
 //              BottomNavigationBarItem(
 //                icon: Icon(CupertinoIcons.heart),
