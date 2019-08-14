@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tvmaze_search_bloc/tiles/SearchTvShowTile.dart';
 import 'package:tvmaze_search_bloc/tiles/TvShowTile.dart';
 import '../blocs/SearchBloc.dart';
 import '../model/ListFromSearchTvMaze.dart';
@@ -32,66 +33,13 @@ class _MyHomePageStateBloc extends State<HomePageBloc> {
     super.dispose();
   }
 
-  // END BLOC
-
-  // COM BLOC
-  Widget _textField() {
-    return Container(
-      color: Colors.black26,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: TextField(
-          style: TextStyle(color: Colors.white),
-          // cada vez que for digitado algo no textfield, o metodo onchaged ira ser chamado e add o q
-          // o usuario digitou no fluxo
-          onChanged: _searchBloc.searchEvent.add,
-          decoration: InputDecoration(
-            prefixIcon: Icon(CupertinoIcons.search, color: Colors.white,),
-            border: OutlineInputBorder(),
-            hintText: "Tv Show name...",
-            hintStyle: TextStyle(color: Colors.white30),
-//            labelText: "Search"
-          ),
-        ),
-      )
-    );
-
-  }
-
-  Widget _items(TvShow item, String tag_name) {
-    return Container(
-      height: 200,
-      child: GestureDetector(
-        child: Hero(
-          tag: tag_name,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(18.0),
-            child: FadeInImage(
-              image: NetworkImage(item.image),
-              fit: BoxFit.cover,
-              placeholder: NetworkImage(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
-            ),
-          ),
-        ),
-        onTap: () => Navigator.push(
-            context,
-            CupertinoPageRoute(
-                builder: (context) => DetailsWidget(item: item
-                ))),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-//      appBar: AppBar(
-//        title: Text("TV Shows Search"),
-//      ),
       body: ListView(
         children: <Widget>[
-          _textField(),
+          // SearchTvShowTile -> sending searchbloc to textSearch
+          SearchTvShowTile(_searchBloc),
           // StreamBuilder -> widget que é capaz de modificar o estado dele ouvind um fluxo de dados
           StreamBuilder<ListFromSearchTvMaze>(
               stream: _searchBloc.apiResultFlux,
@@ -116,17 +64,6 @@ class _MyHomePageStateBloc extends State<HomePageBloc> {
                       return TvShowTile(item);
                     }
                 )
-                // OLD
-//                ListView.builder(
-//                  shrinkWrap: true,
-//                  physics: ClampingScrollPhysics(),
-//                  itemCount: snapshot.data.tvShows.length,
-//                  itemBuilder: (BuildContext context, int index) {
-//                    TvShow item = snapshot.data.tvShows[index];
-//                    String tag_name = item.url + "_search";
-//                    return _items(item, tag_name);
-//                  },
-//                )
                     : Container(height: 500, child: Center(
                   child: CircularProgressIndicator(),
                 ));
@@ -135,4 +72,5 @@ class _MyHomePageStateBloc extends State<HomePageBloc> {
       ),
     );
   }
+  // END BLOC
 }
