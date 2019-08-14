@@ -19,7 +19,7 @@ class TvShowTile extends StatelessWidget {
       child:  Card(
         color: Colors.transparent,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0),
+            borderRadius: BorderRadius.circular(9.0),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -31,7 +31,7 @@ class TvShowTile extends StatelessWidget {
                   tag: item.url,
                   transitionOnUserGestures: true,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(18.0),
+                    borderRadius: BorderRadius.circular(8.0),
                     child: FadeInImage(
                       image: NetworkImage(item.image),
                       fit: BoxFit.fill,
