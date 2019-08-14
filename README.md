@@ -3,7 +3,7 @@
 A Flutter project to search and display TV Shows from Tvmaze API - http://www.tvmaze.com/api. 
 
 
-![gif_tvmaze](https://giant.gfycat.com/adolescentraggeddunlin.gif)
+![gif_tvmaze](https://giant.gfycat.com/AdolescentRaggedDunlin.gif)
 
 DARK-MODE
 
