@@ -20,7 +20,7 @@ class CastCardTile extends StatelessWidget {
               itemBuilder: (BuildContext context, int index) {
                 final Cast item = items[index];
                 return Card(
-                  color: Colors.white,
+                  color: Colors.white12,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(9.0),
                   ),

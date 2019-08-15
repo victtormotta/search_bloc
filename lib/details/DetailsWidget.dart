@@ -36,136 +36,149 @@ class _DetailsWidgetState extends State<DetailsWidget> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-//              Stack(
-//                children: [
-              Container(height: 10),
-              Hero(
-                tag: widget.item.url ?? "url",
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50.0),
-                  child: FadeInImage(
-                    fadeInDuration: Duration(milliseconds: 200),
-                    image: NetworkImage(widget.item.image),
-                    //full-size page
-/*                        fit: BoxFit.cover,
-                        height: size.height/2 + 100,
-                        width: size.width,*/
-                    //half-size page
-                    fit: BoxFit.cover,
-                    height: size.height / 2,
-                    width: size.width - 20,
-                    placeholder: NetworkImage(
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
-                  ),
-                ),
-              ),
-              Container(height: 10),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      "   " + widget.item.name,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w300,
-                          color: Colors.teal[300],
-                          fontSize: 25),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      "      " + widget.item.premiered,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w200,
-                          color: Colors.grey[200],
-                          fontSize: 15),
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      "      " + widget.item.platform,
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[200],
-                          fontSize: 15),
-                    ),
-                  ),
-                ],
-              ),
-              Container(height: 30),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    child: Text(
-                      "   " + "CAST",
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Colors.grey[200],
-                          fontSize: 25),
-                    ),
-                  ),
-                ],
-              ),
-              Container(height: 10),
+              _image(size),
+              _title(),
+              _synopsis(),
+              _cast(),
               CastTileBloc(searchCastBloc),
-
-//                  Container(
-//                    height: size.height,
-//                    width: size.width,
-//                    child: Center(
-//                        child: Card(
-//                      color: Colors.black,
-//                      margin:
-//                          EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
-//                      child: ExpansionTile(
-//                        initiallyExpanded: false,
-//                        title: Text(
-//                          "About",
-//                          textAlign: TextAlign.center,
-//                          style: TextStyle(
-//                              fontWeight: FontWeight.bold,
-//                              color: Colors.white),
-//                        ),
-//                        leading: Icon(
-//                          Icons.description,
-//                          color: Colors.transparent,
-//                        ),
-//                        children: <Widget>[
-//                          Padding(
-//                            padding: EdgeInsets.all(40.0),
-//                            child: Text(
-//                              widget.item.summary,
-//                              style: TextStyle(
-//                                  color: Colors.white,
-//                                  fontSize: 15,
-//                                  fontWeight: FontWeight.w300),
-//                            ),
-//                          )
-//                        ],
-//                      ),
-//                    )),
-//                  ),
-//                ],
-//              )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _image(size){
+    return Column(
+      children: <Widget>[
+        Container(height: 10),
+        Hero(
+          tag: widget.item.url ?? "url",
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(50.0),
+            child: FadeInImage(
+              fadeInDuration: Duration(milliseconds: 200),
+              image: NetworkImage(widget.item.image),
+              //half-size page
+              fit: BoxFit.cover,
+              height: size.height / 2,
+              width: size.width - 20,
+              placeholder: NetworkImage(
+                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _title(){
+    return Column(
+      children: <Widget>[
+        Container(height: 10),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child: Text(
+                "   " + widget.item.name,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.teal[300],
+                    fontSize: 25),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child: Text(
+                "      " + widget.item.premiered,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontWeight: FontWeight.w200,
+                    color: Colors.grey[200],
+                    fontSize: 15),
+              ),
+            ),
+          ],
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child: Text(
+                "      " + widget.item.platform,
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[200],
+                    fontSize: 15),
+              ),
+            ),
+          ],
+        ),
+        Container(height: 20),
+      ],
+    );
+  }
+
+  Widget _synopsis(){
+    return Column(
+      children: <Widget>[
+        Container(color: Colors.black45,
+          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+          child: Center(
+            child: Text("Synopsis",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey[200],
+                  fontSize: 17),
+            ),
+          ),
+        ),
+        Container(color: Colors.black45,height: 10,),
+        Container(color: Colors.black45,
+          padding: EdgeInsets.fromLTRB(30, 0, 30, 10),
+          child: Center(
+            child: Text(widget.item.summary,
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey[200],
+                  fontSize: 15),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _cast(){
+    return Column(
+      children: <Widget>[
+        Container(height: 20),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              child: Text(
+                "   " + "CAST",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Colors.grey[200],
+                    fontSize: 25),
+              ),
+            ),
+          ],
+        ),
+        Container(height: 10),
+      ],
     );
   }
 }

@@ -34,12 +34,13 @@ class HomeScreen extends StatelessWidget {
                   activeIcon: Icon(Icons.explore, color: Colors.black87, )
               ),
               BottomNavigationBarItem(
-                icon: Icon(CupertinoIcons.heart),
+                icon: Icon(CupertinoIcons.settings_solid, color: Colors.white70,),
+                activeIcon: Icon(CupertinoIcons.settings_solid, color: Colors.black87, )
               ),
             ],
           ),
           tabBuilder: (BuildContext context, int index) {
-            assert(index >= 0 && index <= 2);
+            assert(index >= 0 && index <= 3);
             switch (index) {
               case 0:
                 return CupertinoTabView(
@@ -57,6 +58,12 @@ class HomeScreen extends StatelessWidget {
                 return CupertinoTabView(
                   builder: (BuildContext context) => HomePage(),
                   defaultTitle: 'Discover Page',
+                );
+                break;
+              case 3:
+                return CupertinoTabView(
+                  builder: (BuildContext context) => HomePage(),
+                  defaultTitle: 'Settings Page',
                 );
                 break;
             }
