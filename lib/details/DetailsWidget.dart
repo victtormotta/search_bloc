@@ -24,10 +24,10 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     searchCastBloc.searchEvent.add(widget.item.id);
 
     return CupertinoPageScaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white12,
       navigationBar: CupertinoNavigationBar(
         previousPageTitle: "Back",
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[800],
       ),
       child: SingleChildScrollView(
         child: Container(
@@ -69,7 +69,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontWeight: FontWeight.w300,
-                          color: Colors.teal[800],
+                          color: Colors.teal[300],
                           fontSize: 25),
                     ),
                   ),
@@ -84,7 +84,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontWeight: FontWeight.w200,
-                          color: Colors.black,
+                          color: Colors.grey[200],
                           fontSize: 15),
                     ),
                   ),
@@ -99,7 +99,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
+                          color: Colors.grey[200],
                           fontSize: 15),
                     ),
                   ),
@@ -115,7 +115,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
-                          color: Colors.black,
+                          color: Colors.grey[200],
                           fontSize: 25),
                     ),
                   ),

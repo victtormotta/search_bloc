@@ -15,31 +15,31 @@ class HomeScreen extends StatelessWidget {
       child: DefaultTextStyle(
         style: CupertinoTheme.of(context).textTheme.textStyle,
         child: CupertinoTabScaffold(
-          backgroundColor: Colors.teal,
+          backgroundColor: Colors.white12,
           tabBar: CupertinoTabBar(
-            backgroundColor: Colors.teal[900],
+            backgroundColor: Colors.white12,
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
 //                title: Text("Home", style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white70)),
-                icon: Icon(Icons.home, color: Colors.black12,),
-                activeIcon: Icon(Icons.home, color: Colors.white70,)
+                icon: Icon(Icons.home, color: Colors.white70,),
+                activeIcon: Icon(Icons.home, color: Colors.black87,)
               ),
               BottomNavigationBarItem(
 //                title: Text("Search"),
-                icon: Icon(Icons.search, color: Colors.black12,),
-                  activeIcon: Icon(Icons.search, color: Colors.white70, )
+                icon: Icon(Icons.search, color: Colors.white70,),
+                  activeIcon: Icon(Icons.search, color: Colors.black87, )
               ),
-//              BottomNavigationBarItem(
-//                  icon: Icon(CupertinoIcons.shuffle_thick, color: Colors.black,),
-//                  activeIcon: Icon(CupertinoIcons.search, color: Colors.white70, )
-//              ),
-//              BottomNavigationBarItem(
-//                icon: Icon(CupertinoIcons.heart),
-//              ),
+              BottomNavigationBarItem(
+                  icon: Icon(Icons.explore, color: Colors.white70,),
+                  activeIcon: Icon(Icons.explore, color: Colors.black87, )
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.heart),
+              ),
             ],
           ),
           tabBuilder: (BuildContext context, int index) {
-            assert(index >= 0 && index <= 1);
+            assert(index >= 0 && index <= 2);
             switch (index) {
               case 0:
                 return CupertinoTabView(
@@ -53,11 +53,11 @@ class HomeScreen extends StatelessWidget {
                   defaultTitle: 'Home Page Bloc',
                 );
                 break;
-//              case 2:
-//                return CupertinoTabView(
-//                  builder: (BuildContext context) => HomePage(),
-//                  defaultTitle: 'Home Page',
-//                );
+              case 2:
+                return CupertinoTabView(
+                  builder: (BuildContext context) => HomePage(),
+                  defaultTitle: 'Discover Page',
+                );
                 break;
             }
             return null;

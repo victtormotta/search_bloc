@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Tv Show',
       theme: ThemeData(
           primarySwatch: Colors.teal,
-          canvasColor: Colors.white
+          canvasColor: Colors.white12
       ),
 //          home: HomePageBloc(title: 'By Tv Maze'),
 //        home: HomePage(title: 'By Tv Maze'),

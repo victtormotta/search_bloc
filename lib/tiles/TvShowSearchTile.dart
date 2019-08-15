@@ -16,15 +16,15 @@ class TvShowSearchTile extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
-            style: TextStyle(color: Colors.black54, fontWeight: FontWeight.w500),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
             // cada vez que for digitado algo no textfield, o metodo onchaged ira ser chamado e add o q
             // o usuario digitou no fluxo
             onChanged: _searchBloc.searchEvent.add,
             decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search, color: Colors.black54,),
+              prefixIcon: Icon(Icons.search, color: Colors.white,),
               border: OutlineInputBorder(),
               hintText: "Tv Show name...",
-              hintStyle: TextStyle(color: Colors.black54),
+              hintStyle: TextStyle(color: Colors.white),
             ),
           ),
         )
