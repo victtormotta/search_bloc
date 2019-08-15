@@ -20,6 +20,7 @@ class LoadBloc {
   LoadBloc(){
     addEventSink();
     apiResultFlux = searchFlux
+        .distinct()
         .asyncMap(_service.load)
         .switchMap((valor) => Observable.just(valor));
 
@@ -31,6 +32,6 @@ class LoadBloc {
   }
 
   void addEventSink(){
-//    searchEvent.add(_tvMazeAllShows);
+    searchEvent.add(_tvMazeAllShows);
   }
 }
