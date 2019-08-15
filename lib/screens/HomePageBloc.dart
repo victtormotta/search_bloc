@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/tiles/SearchTvShowTile.dart';
+import 'package:tvmaze_search_bloc/tiles/TvShowSearchTile.dart';
 import 'package:tvmaze_search_bloc/tiles/TvShowTile.dart';
 import '../blocs/SearchBloc.dart';
 import '../model/ListFromSearchTvMaze.dart';
@@ -39,7 +39,7 @@ class _MyHomePageStateBloc extends State<HomePageBloc> {
       body: ListView(
         children: <Widget>[
           // SearchTvShowTile -> sending searchbloc to textSearch
-          SearchTvShowTile(_searchBloc),
+          TvShowSearchTile(_searchBloc),
           // StreamBuilder -> widget que é capaz de modificar o estado dele ouvind um fluxo de dados
           StreamBuilder<ListFromSearchTvMaze>(
               stream: _searchBloc.apiResultFlux,

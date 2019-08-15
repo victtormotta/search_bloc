@@ -38,8 +38,10 @@ class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
           onTap: () => Navigator.push(
               context,
               CupertinoPageRoute(
-                  builder: (context) => DetailsWidget(item:item,
-                      ))),
+                  builder: (context) => DetailsWidget(item:item,)
+              )
+          )
+          ,
         ),
       );
     // DEFAULT:

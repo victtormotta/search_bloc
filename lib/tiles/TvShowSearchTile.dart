@@ -2,11 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchBloc.dart';
 
-class SearchTvShowTile extends StatelessWidget {
+class TvShowSearchTile extends StatelessWidget {
 
   final SearchBloc _searchBloc;
 
-  SearchTvShowTile(this._searchBloc);
+  TvShowSearchTile(this._searchBloc);
 
   @override
   Widget build(BuildContext context) {

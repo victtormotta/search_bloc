@@ -1,4 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:tvmaze_search_bloc/blocs/SearchBloc.dart';
+import 'package:tvmaze_search_bloc/blocs/SearchCastBloc.dart';
+import 'package:tvmaze_search_bloc/tiles/cast/CastTileBloc.dart';
 
 import '../model/TvShow.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +20,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
+    final SearchCastBloc searchCastBloc = SearchCastBloc();
+    searchCastBloc.searchEvent.add(widget.item.id);
+
     return CupertinoPageScaffold(
       backgroundColor: Colors.white,
       navigationBar: CupertinoNavigationBar(
@@ -32,70 +38,92 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             children: <Widget>[
 //              Stack(
 //                children: [
-                  Container(height: 10),
-                  Hero(
-                    tag: widget.item.url ?? "url",
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(50.0),
-                      child: FadeInImage(
-                        fadeInDuration: Duration(milliseconds: 200),
-                        image: NetworkImage(widget.item.image),
-                        //full-size page
+              Container(height: 10),
+              Hero(
+                tag: widget.item.url ?? "url",
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50.0),
+                  child: FadeInImage(
+                    fadeInDuration: Duration(milliseconds: 200),
+                    image: NetworkImage(widget.item.image),
+                    //full-size page
 /*                        fit: BoxFit.cover,
                         height: size.height/2 + 100,
                         width: size.width,*/
-                        //half-size page
-                        fit: BoxFit.cover,
-                        height: size.height/2,
-                        width: size.width - 20,
-                        placeholder: NetworkImage(
-                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
-                      ),
+                    //half-size page
+                    fit: BoxFit.cover,
+                    height: size.height / 2,
+                    width: size.width - 20,
+                    placeholder: NetworkImage(
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
+                  ),
+                ),
+              ),
+              Container(height: 10),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      "   " + widget.item.name,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w300,
+                          color: Colors.teal[800],
+                          fontSize: 25),
                     ),
                   ),
-                  Container(height: 10),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          "   " + widget.item.name,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w300,
-                              color: Colors.black, fontSize: 25),
-                        ),
-                      ),
-                    ],
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      "      " + widget.item.premiered,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w200,
+                          color: Colors.black,
+                          fontSize: 15),
+                    ),
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          "      " + widget.item.premiered,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontWeight: FontWeight.w200,
-                              color: Colors.black, fontSize: 15),
-                        ),
-                      ),
-                    ],
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      "      " + widget.item.platform,
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontSize: 15),
+                    ),
                   ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          "      " + widget.item.platform,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black, fontSize: 15),
-                        ),
-                      ),
-                    ],
+                ],
+              ),
+              Container(height: 30),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    child: Text(
+                      "   " + "CAST",
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black,
+                          fontSize: 25),
+                    ),
                   ),
+                ],
+              ),
+              Container(height: 10),
+              CastTileBloc(searchCastBloc),
+
 //                  Container(
 //                    height: size.height,
 //                    width: size.width,
