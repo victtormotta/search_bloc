@@ -16,6 +16,8 @@ class Cast {
     String returnIdValue(json) {
       if(json.containsKey("person"))
         return json["person"]["id"].toString();
+
+      return "id_null";
     }
 
     String returnNameValue(json) {
@@ -24,6 +26,8 @@ class Cast {
         json["person"]["name"] as String
             : "name_null";
       }
+
+      return "name_null";
     }
 
     String returnUrlValue(json) {
@@ -32,6 +36,8 @@ class Cast {
         json["person"]["url"] as String
             : "url_null";
       }
+
+      return "url_null";
     }
 
     String returnImageValue(json) {
@@ -40,6 +46,8 @@ class Cast {
         json["person"]["image"]["original"] as String
             : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw";
       }
+
+      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw";
     }
 
     return Cast(
