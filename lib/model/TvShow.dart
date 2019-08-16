@@ -1,3 +1,5 @@
+import 'package:html/parser.dart';
+
 class TvShow {
   /*
   Classe que representa cada item da pesquisa;
@@ -65,13 +67,22 @@ class TvShow {
           : "status_null";
     }
 
+    /*
+    https://stackoverflow.com/questions/51593790/remove-html-tags-from-a-string-in-dart
+     */
+    String _parseHtmlString(String htmlString) {
+      var document = parse(htmlString);
+      String parsedString = parse(document.body.text).documentElement.text;
+      return parsedString;
+    }
+
     String returnSummaryValue(json) {
       if(json.containsKey("show")) {
         return json["show"]["summary"] != null ?
-        json["show"]["summary"] as String
+        _parseHtmlString(json["show"]["summary"] as String)
             : "summary_null";
       } else return json["summary"] != null ?
-      json["summary"] as String
+      _parseHtmlString(json["summary"] as String)
           : "summary_null";
     }
 
