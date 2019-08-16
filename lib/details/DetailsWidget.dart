@@ -52,23 +52,47 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     return Column(
       children: <Widget>[
         Container(height: 10),
-        Hero(
-          tag: widget.item.url ?? "url",
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(50.0),
-            child: FadeInImage(
-              fadeInDuration: Duration(milliseconds: 200),
-              image: NetworkImage(widget.item.image),
-              //half-size page
-              fit: BoxFit.cover,
-              height: size.height / 2,
-              width: size.width - 10,
-              placeholder: NetworkImage(
-                  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
+        GestureDetector(
+            child: Hero(
+              tag: widget.item.url ?? "url",
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50.0),
+                child: FadeInImage(
+                  fadeInDuration: Duration(milliseconds: 200),
+                  image: NetworkImage(widget.item.image),
+                  //half-size page
+                  fit: BoxFit.cover,
+                  height: size.height / 2,
+                  width: size.width - 10,
+                  placeholder: NetworkImage(
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
+                ),
+              ),
             ),
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => _fullSizeImage(widget.item.image)
+                )
+            )
+        )
+      ],
+    );
+  }
+
+  Widget _fullSizeImage(image){
+    return Scaffold(
+      body: GestureDetector(
+        child: Center(
+          child: Hero(
+            tag: 'imageHero',
+            child: Image.network(image),
           ),
         ),
-      ],
+        onTap: () {
+          Navigator.pop(context);
+        },
+      ),
     );
   }
 
@@ -144,9 +168,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               topRight: Radius.circular(30),
               topLeft: Radius.circular(30),
               bottomLeft: Radius.circular(30),
-              bottomRight: Radius.circular(30)
-          )
-      ),
+              bottomRight: Radius.circular(30))),
       child: Column(
         children: <Widget>[
           // title 'sumary'
@@ -189,26 +211,28 @@ class _DetailsWidgetState extends State<DetailsWidget> {
   }
 
   Widget _cast(size) {
-    return Container(child: Column(
-      children: <Widget>[
-        Container(height: 20),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              child: Text(
-                "   " + "CAST",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.grey[200],
-                    fontSize: 25),
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Container(height: 20),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                child: Text(
+                  "   " + "CAST",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w600,
+                      color: Colors.grey[200],
+                      fontSize: 25),
+                ),
               ),
-            ),
-          ],
-        ),
-        Container(height: 10),
-      ],
-    ),);
+            ],
+          ),
+          Container(height: 10),
+        ],
+      ),
+    );
   }
 }
