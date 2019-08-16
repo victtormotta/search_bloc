@@ -13,6 +13,7 @@ class CastCardTile extends StatelessWidget {
         SizedBox(
           height: 180.0,
           child: ListView.builder(
+              padding: EdgeInsets.fromLTRB(5, 0, 5, 5),
               physics: ClampingScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,

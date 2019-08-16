@@ -19,7 +19,6 @@ class CastTileBloc extends StatelessWidget {
           return snapshot.hasData
               ? CastCardTile(snapshot.data.casts)
               : Container(
-                  height: 500,
                   child: Center(
                     child: CircularProgressIndicator(),
                   ));

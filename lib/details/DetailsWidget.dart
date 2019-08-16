@@ -37,9 +37,9 @@ class _DetailsWidgetState extends State<DetailsWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               _image(size),
-              _title(),
-              _synopsis(),
-              _cast(),
+              _title(size),
+              _synopsis(size),
+              _cast(size),
               CastTileBloc(searchCastBloc),
             ],
           ),
@@ -48,7 +48,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     );
   }
 
-  Widget _image(size){
+  Widget _image(size) {
     return Column(
       children: <Widget>[
         Container(height: 10),
@@ -62,7 +62,7 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               //half-size page
               fit: BoxFit.cover,
               height: size.height / 2,
-              width: size.width - 20,
+              width: size.width - 10,
               placeholder: NetworkImage(
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
             ),
@@ -72,94 +72,124 @@ class _DetailsWidgetState extends State<DetailsWidget> {
     );
   }
 
-  Widget _title(){
-    return Column(
-      children: <Widget>[
-        Container(height: 10),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              child: Text(
-                "   " + widget.item.name,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.teal[300],
-                    fontSize: 25),
+  Widget _title(size) {
+    return Container(
+      width: size.width - 30,
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 10,
+          ),
+          // show's name
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Flexible(
+                child: Container(
+                  child: Text(
+                    widget.item.name,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.teal[300],
+                        fontSize: 25),
+                  ),
+                ),
+              )
+            ],
+          ),
+          // show's year
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                child: Text(
+                  widget.item.premiered,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontWeight: FontWeight.w200,
+                      color: Colors.grey[200],
+                      fontSize: 15),
+                ),
               ),
-            ),
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-              child: Text(
-                "      " + widget.item.premiered,
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontWeight: FontWeight.w200,
-                    color: Colors.grey[200],
-                    fontSize: 15),
+            ],
+          ),
+          // show's platform
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                child: Text(
+                  widget.item.platform,
+                  textAlign: TextAlign.left,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey[200],
+                      fontSize: 15),
+                ),
               ),
-            ),
-          ],
-        ),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
+            ],
+          ),
+          Container(height: 20),
+        ],
+      ),
+    );
+  }
+
+  Widget _synopsis(size) {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.black45,
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(30),
+              topLeft: Radius.circular(30),
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30)
+          )
+      ),
+      child: Column(
+        children: <Widget>[
+          // title 'sumary'
+          Container(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
+            child: Center(
               child: Text(
-                "      " + widget.item.platform,
-                textAlign: TextAlign.left,
+                "Synopsis",
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[200],
                     fontSize: 15),
               ),
             ),
-          ],
-        ),
-        Container(height: 20),
-      ],
+          ),
+          Container(
+            height: 10,
+          ),
+          // show's sumary
+          Container(
+            padding: EdgeInsets.fromLTRB(30, 0, 30, 10),
+            child: Center(
+              child: Text(
+                widget.item.summary,
+                textAlign: TextAlign.justify,
+                style: TextStyle(
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey[200],
+                    fontSize: 15),
+              ),
+            ),
+          ),
+          Container(
+            height: 5,
+          ),
+        ],
+      ),
     );
   }
 
-  Widget _synopsis(){
-    return Column(
-      children: <Widget>[
-        Container(color: Colors.black45,
-          padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-          child: Center(
-            child: Text("Synopsis",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[200],
-                  fontSize: 17),
-            ),
-          ),
-        ),
-        Container(color: Colors.black45,height: 10,),
-        Container(color: Colors.black45,
-          padding: EdgeInsets.fromLTRB(30, 0, 30, 10),
-          child: Center(
-            child: Text(widget.item.summary,
-              textAlign: TextAlign.justify,
-              style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  color: Colors.grey[200],
-                  fontSize: 15),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  Widget _cast(){
-    return Column(
+  Widget _cast(size) {
+    return Container(child: Column(
       children: <Widget>[
         Container(height: 20),
         Row(
@@ -179,6 +209,6 @@ class _DetailsWidgetState extends State<DetailsWidget> {
         ),
         Container(height: 10),
       ],
-    );
+    ),);
   }
 }

@@ -32,6 +32,6 @@ class LoadBloc {
   }
 
   void addEventSink(){
-    searchEvent.add(_tvMazeAllShows);
+//    searchEvent.add(_tvMazeAllShows);
   }
 }

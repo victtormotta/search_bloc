@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
         child: CupertinoTabScaffold(
           backgroundColor: Colors.white12,
           tabBar: CupertinoTabBar(
-            backgroundColor: Colors.white12,
+            backgroundColor: Colors.grey[600],
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
 //                title: Text("Home", style: TextStyle(fontWeight: FontWeight.w700, color: Colors.white70)),
@@ -56,13 +56,13 @@ class HomeScreen extends StatelessWidget {
                 break;
               case 2:
                 return CupertinoTabView(
-                  builder: (BuildContext context) => HomePage(),
+                  builder: (BuildContext context) => HorizontalSwiper(),
                   defaultTitle: 'Discover Page',
                 );
                 break;
               case 3:
                 return CupertinoTabView(
-                  builder: (BuildContext context) => HomePage(),
+                  builder: (BuildContext context) => HorizontalSwiper(),
                   defaultTitle: 'Settings Page',
                 );
                 break;
