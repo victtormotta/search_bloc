@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/tiles/TvShowTile.dart';
+import 'package:tvmaze_search_bloc/screens/search/details/tvshow/DetailsWidget.dart';
+import 'package:tvmaze_search_bloc/tiles/search/TvShowCard.dart';
 import '../model/ListFromSearchTvMaze.dart';
 import '../model/TvShow.dart';
-import '../details/DetailsWidget.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<HomePage> {
               itemCount: _tvShowResponse.length,
               itemBuilder: (context, index){
                 TvShow item = _tvShowResponse[index];
-                return TvShowTile(item);
+                return TvShowCard(item);
               }
           )
 //          ListView.builder(

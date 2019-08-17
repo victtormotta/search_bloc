@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/model/Cast.dart';
 
-class CastCardTile extends StatelessWidget {
+class ListCard extends StatelessWidget {
   final List<Cast> items;
 
-  CastCardTile(this.items);
+  ListCard(this.items);
 
   @override
   Widget build(BuildContext context) {

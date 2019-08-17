@@ -2,13 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchCastBloc.dart';
 import 'package:tvmaze_search_bloc/model/ListCastTvMaze.dart';
+import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/cast/ListCard.dart';
 
-import 'CastCardTile.dart';
-
-class CastTileBloc extends StatelessWidget {
+class DetailsCastBloc extends StatelessWidget {
   final SearchCastBloc _searchCastBloc;
 
-  CastTileBloc(this._searchCastBloc);
+  DetailsCastBloc(this._searchCastBloc);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class CastTileBloc extends StatelessWidget {
         builder:
             (BuildContext context, AsyncSnapshot<ListCastTvMaze> snapshot) {
           return snapshot.hasData
-              ? CastCardTile(snapshot.data.casts)
+              ? ListCard(snapshot.data.casts)
               : Container(
                   child: Center(
                     child: CircularProgressIndicator(),

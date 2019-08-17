@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:tvmaze_search_bloc/blocs/LoadBloc.dart';
-import 'package:tvmaze_search_bloc/details/DetailsWidget.dart';
 import 'package:tvmaze_search_bloc/model/ListFromSearchTvMaze.dart';
 import 'package:tvmaze_search_bloc/model/TvShow.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
+import 'package:tvmaze_search_bloc/screens/search/details/tvshow/DetailsWidget.dart';
 
 class HorizontalSwiper extends StatefulWidget {
   HorizontalSwiper({Key key, this.title}) : super(key: key);
