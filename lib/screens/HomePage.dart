@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/screens/search/details/tvshow/DetailsWidget.dart';
 import 'package:tvmaze_search_bloc/tiles/search/TvShowCard.dart';
+import 'package:tvmaze_search_bloc/transition/FadeRoute.dart';
 import '../model/ListFromSearchTvMaze.dart';
 import '../model/TvShow.dart';
 
@@ -84,10 +85,7 @@ class _MyHomePageState extends State<HomePage> {
       onTap: () =>
           Navigator.push(
               context,
-              CupertinoPageRoute(
-                  builder: (context) =>
-                      DetailsWidget(item:item,
-                      ))),
+              FadeRoute(page: DetailsWidget(item))),
     );
   }
 

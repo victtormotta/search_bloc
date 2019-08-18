@@ -6,6 +6,7 @@ import 'package:tvmaze_search_bloc/model/ListFromSearchTvMaze.dart';
 import 'package:tvmaze_search_bloc/model/TvShow.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:tvmaze_search_bloc/screens/search/details/tvshow/DetailsWidget.dart';
+import 'package:tvmaze_search_bloc/transition/FadeRoute.dart';
 
 class HorizontalSwiper extends StatefulWidget {
   HorizontalSwiper({Key key, this.title}) : super(key: key);
@@ -37,9 +38,7 @@ class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
           ),
           onTap: () => Navigator.push(
               context,
-              CupertinoPageRoute(
-                  builder: (context) => DetailsWidget(item:item,)
-              )
+              FadeRoute(page: DetailsWidget(item))
           )
           ,
         ),

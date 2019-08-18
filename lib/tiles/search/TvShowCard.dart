@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/screens/search/details/tvshow/DetailsWidget.dart';
+import 'package:tvmaze_search_bloc/transition/FadeRoute.dart';
 import '../../model/TvShow.dart';
 
 class TvShowCard extends StatelessWidget {
@@ -14,7 +15,7 @@ class TvShowCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => DetailsWidget(item: item)));
+            FadeRoute(page: DetailsWidget(item)));
       },
       child: Card(
           color: Colors.transparent,
