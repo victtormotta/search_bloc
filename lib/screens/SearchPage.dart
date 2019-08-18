@@ -3,21 +3,22 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/screens/search/details/tvshow/DetailsWidget.dart';
-import 'package:tvmaze_search_bloc/tiles/search/TvShowCard.dart';
+import 'package:tvmaze_search/screens/search/details/tvshow/DetailsWidget.dart';
+import 'package:tvmaze_search/tiles/search/TvShowCard.dart';
+import 'package:tvmaze_search/transition/FadeRoute.dart';
 import '../model/ListFromSearchTvMaze.dart';
 import '../model/TvShow.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  SearchPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  _MySearchPageState createState() => _MySearchPageState();
 }
 
-class _MyHomePageState extends State<HomePage> {
+class _MySearchPageState extends State<SearchPage> {
   List<TvShow> _tvShowResponse = List<TvShow>();
   String text = "";
 
@@ -84,10 +85,7 @@ class _MyHomePageState extends State<HomePage> {
       onTap: () =>
           Navigator.push(
               context,
-              CupertinoPageRoute(
-                  builder: (context) =>
-                      DetailsWidget(item:item,
-                      ))),
+              FadeRoute(page: DetailsWidget(item))),
     );
   }
 

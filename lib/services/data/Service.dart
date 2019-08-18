@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:tvmaze_search_bloc/model/ListCastTvMaze.dart';
+import 'package:tvmaze_search/model/ListCastTvMaze.dart';
 import '../../model/ListFromSearchTvMaze.dart';
 
 class Service{

@@ -1,4 +1,4 @@
-package com.example.tvmaze_search_bloc;
+package com.example.tvmaze_search;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

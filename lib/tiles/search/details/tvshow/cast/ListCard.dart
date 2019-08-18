@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/model/Cast.dart';
+import 'package:tvmaze_search/model/Cast.dart';
 
 class ListCard extends StatelessWidget {
   final List<Cast> items;
@@ -14,7 +14,7 @@ class ListCard extends StatelessWidget {
           height: 180.0,
           child: ListView.builder(
               padding: EdgeInsets.fromLTRB(5, 0, 5, 5),
-              physics: ClampingScrollPhysics(),
+              physics: BouncingScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
               itemCount: items.length,
@@ -46,7 +46,7 @@ class ListCard extends StatelessWidget {
                 );
               }),
         ),
-      ]),
+      ])
     );
   }
 }

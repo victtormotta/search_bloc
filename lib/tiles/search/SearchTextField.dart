@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/blocs/SearchBloc.dart';
+import 'package:tvmaze_search/blocs/SearchBloc.dart';
 
 class TvShowSearchTile extends StatelessWidget {
 

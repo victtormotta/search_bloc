@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/model/TvShow.dart';
+import 'package:tvmaze_search/model/TvShow.dart';
 import '../../model/ListFromSearchTvMaze.dart';
 
-import 'package:tvmaze_search_bloc/tiles/search/TvShowCard.dart';
+import 'package:tvmaze_search/tiles/search/TvShowCard.dart';
 
 /*
   Class responsible for the tvshow card;

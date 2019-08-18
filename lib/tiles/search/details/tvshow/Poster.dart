@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tvmaze_search/transition/FadeRoute.dart';
 
 import 'PosterFullSize.dart';
 
@@ -32,7 +33,7 @@ class Poster extends StatelessWidget {
               ),
             ),
             onTap: () => Navigator.push(context,
-                MaterialPageRoute(builder: (context) => PosterFullSize(image))))
+                FadeRoute(page: PosterFullSize(image))))
       ],
     );
   }

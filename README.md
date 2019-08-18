@@ -1,4 +1,4 @@
-# tvmaze_search_bloc
+# tvmaze_search
 
 A Flutter project to search and display TV Shows from Tvmaze API - http://www.tvmaze.com/api. 
 

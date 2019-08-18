@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/tiles/search/GridCard.dart';
-import 'package:tvmaze_search_bloc/tiles/search/SearchTextField.dart';
+import 'package:tvmaze_search/tiles/search/GridCard.dart';
+import 'package:tvmaze_search/tiles/search/SearchTextField.dart';
 import '../../blocs/SearchBloc.dart';
 import '../../model/ListFromSearchTvMaze.dart';
 

@@ -9,6 +9,7 @@ class Synopsis extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
+      margin: EdgeInsets.all(4),
       decoration: BoxDecoration(
           color: Colors.black45,
           borderRadius: BorderRadius.only(

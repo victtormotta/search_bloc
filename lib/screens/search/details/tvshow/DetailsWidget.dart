@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:tvmaze_search_bloc/blocs/SearchCastBloc.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/Poster.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/Synopsys.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/TitleCast.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/TitleTv.dart';
+import 'package:tvmaze_search/blocs/SearchCastBloc.dart';
+import 'package:tvmaze_search/tiles/search/details/tvshow/Poster.dart';
+import 'package:tvmaze_search/tiles/search/details/tvshow/Synopsys.dart';
+import 'package:tvmaze_search/tiles/search/details/tvshow/TitleCast.dart';
+import 'package:tvmaze_search/tiles/search/details/tvshow/TitleTv.dart';
 import '../../../../model/TvShow.dart';
 import 'package:flutter/material.dart';
 import 'cast/DetailsCastBloc.dart';
@@ -11,23 +11,19 @@ import 'cast/DetailsCastBloc.dart';
 /*
   Class responsible for display tvshow's details; such as synopis, cast, etc;
  */
-class DetailsWidget extends StatefulWidget {
+class DetailsWidget extends StatelessWidget {
   final TvShow item;
 
-  const DetailsWidget({Key key, this.item}) : super(key: key);
+  DetailsWidget(this.item);
 
-  @override
-  _DetailsWidgetState createState() => _DetailsWidgetState();
-}
 
-class _DetailsWidgetState extends State<DetailsWidget> {
   @override
   Widget build(BuildContext context) {
     /*method to get actual size of device*/
     Size size = MediaQuery.of(context).size;
     /*add id of tvshow to be listen on Bloc's Sink*/
     final SearchCastBloc searchCastBloc = SearchCastBloc();
-    searchCastBloc.searchEvent.add(widget.item.id);
+    searchCastBloc.searchEvent.add(item.id);
 
     return CupertinoPageScaffold(
       backgroundColor: Colors.white12,
@@ -36,6 +32,8 @@ class _DetailsWidgetState extends State<DetailsWidget> {
         backgroundColor: Colors.grey[800],
       ),
       child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        physics: BouncingScrollPhysics(),
         child: Container(
           width: size.width,
           child: Column(
@@ -44,15 +42,15 @@ class _DetailsWidgetState extends State<DetailsWidget> {
               /*separation of items to be displayed on widgets*/
               Poster(
                   size,
-                  widget.item.url,
-                  widget.item.image),
+                  item.url,
+                  item.image),
               TitleTv(size,
-                  widget.item.name,
-                  widget.item.premiered,
-                  widget.item.platform),
+                  item.name,
+                  item.premiered,
+                  item.platform),
               Synopsis(
-                  widget.item.summary),
-              TitleCast(),
+                  item.summary),
+              TitleCast(size),
               DetailsCastBloc(
                   searchCastBloc),
             ],

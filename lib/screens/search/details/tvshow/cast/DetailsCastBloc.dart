@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/blocs/SearchCastBloc.dart';
-import 'package:tvmaze_search_bloc/model/ListCastTvMaze.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/cast/ListCard.dart';
+import 'package:tvmaze_search/blocs/SearchCastBloc.dart';
+import 'package:tvmaze_search/model/ListCastTvMaze.dart';
+import 'package:tvmaze_search/tiles/search/details/tvshow/cast/ListCard.dart';
 
 class DetailsCastBloc extends StatelessWidget {
   final SearchCastBloc _searchCastBloc;
