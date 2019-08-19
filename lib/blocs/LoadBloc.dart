@@ -23,7 +23,6 @@ class LoadBloc {
         .distinct()
         .asyncMap(_service.load)
         .switchMap((valor) => Observable.just(valor));
-
   }
 
   // boa pratica p/ fechar a stream
