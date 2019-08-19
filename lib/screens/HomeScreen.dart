@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search/tiles/swiper/HorizontalSwiper.dart';
 
-import 'SearchPage.dart';
+import 'package:tvmaze_search/screens/search/SearchPage.dart';
 
 
 class HomeScreen extends StatelessWidget {
