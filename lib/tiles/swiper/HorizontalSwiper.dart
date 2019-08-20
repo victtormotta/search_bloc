@@ -66,7 +66,7 @@ class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
           ),
           onTap: () => Navigator.push(
               context,
-              FadeRoute(page: DetailsWidget(item))
+              FadeRoute(page: DetailsWidget(item: item))
           )
           ,
         ),

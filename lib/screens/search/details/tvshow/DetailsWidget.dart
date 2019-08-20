@@ -1,5 +1,8 @@
+import 'dart:async';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
-=import 'package:tvmaze_search/transition/FadeRoute.dart';
+import 'package:tvmaze_search/transition/FadeRoute.dart';
 import 'package:tvmaze_search/model/ListCastTvMaze.dart';
 import 'package:tvmaze_search/model/Cast.dart';
 import '../../../../model/TvShow.dart';
@@ -8,19 +11,56 @@ import 'package:flutter/material.dart';
 /*
   Class responsible for display tvshow's details; such as synopis, cast, etc;
  */
-class DetailsWidget extends StatelessWidget {
+
+class DetailsWidget extends StatefulWidget {
+  DetailsWidget({Key key, this.item}) : super(key: key);
+
   final TvShow item;
 
-  DetailsWidget(this.item);
+  @override
+  _MyDetailsWidgetState createState() => _MyDetailsWidgetState();
+}
 
+class _MyDetailsWidgetState extends State<DetailsWidget> {
+
+  List<Cast> _castResponse = List<Cast>();
+  String showId = "";
+
+  @override
+  initState(){
+    if (widget.item.id != showId) {
+      _search(widget.item.id);
+      showId = widget.item.id;
+    }
+  }
+
+  Future<void> _search(String showId) async {
+    try {
+      Response response =
+      await Dio().get("http://api.tvmaze.com/shows/$showId?embed=cast");
+
+      List<Cast> searchedItems = ListCastTvMaze.fromJson(response.data['_embedded']['cast']).casts;
+
+      setState(() {
+        _castResponse = searchedItems;
+      });
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
+
+//  Future<void> _timeSearch(String searchText) async {
+//    if (item.id != showId) {
+//      Timer(Duration(milliseconds: 600), () {
+//        _search(showId);
+//      });
+//    }
+//  }
 
   @override
   Widget build(BuildContext context) {
     /*method to get actual size of device*/
     Size size = MediaQuery.of(context).size;
-    /*add id of tvshow to be listen on Bloc's Sink*/
-    final SearchCastBloc searchCastBloc = SearchCastBloc();
-    searchCastBloc.searchEvent.add(item.id);
 
     return CupertinoPageScaffold(
       backgroundColor: Colors.white12,
@@ -42,12 +82,12 @@ class DetailsWidget extends StatelessWidget {
                   Container(height: 10),
                   GestureDetector(
                       child: Hero(
-                        tag: item.url ?? "url",
+                        tag: widget.item.url ?? "url",
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(50.0),
                           child: FadeInImage(
                             fadeInDuration: Duration(milliseconds: 200),
-                            image: NetworkImage(item.image),
+                            image: NetworkImage(widget.item.image),
                             //half-size page
                             fit: BoxFit.cover,
                             height: size.height / 2,
@@ -63,7 +103,7 @@ class DetailsWidget extends StatelessWidget {
                               child: Center(
                                 child: Hero(
                                   tag: 'imageHero',
-                                  child: Image.network(item.image),
+                                  child: Image.network(widget.item.image),
                                 ),
                               ),
                               onTap: () {
@@ -88,7 +128,7 @@ class DetailsWidget extends StatelessWidget {
                         Flexible(
                           child: Container(
                             child: Text(
-                              item.name,
+                              widget.item.name,
                               textAlign: TextAlign.left,
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
@@ -105,7 +145,7 @@ class DetailsWidget extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           child: Text(
-                            item.premiered,
+                            widget.item.premiered,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontWeight: FontWeight.w200,
@@ -121,7 +161,7 @@ class DetailsWidget extends StatelessWidget {
                       children: <Widget>[
                         Container(
                           child: Text(
-                            item.platform,
+                            widget.item.platform,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -169,7 +209,7 @@ class DetailsWidget extends StatelessWidget {
                       padding: EdgeInsets.fromLTRB(30, 0, 30, 10),
                       child: Center(
                         child: Text(
-                          item.summary,
+                          widget.item.summary,
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
@@ -209,13 +249,8 @@ class DetailsWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              /*DetailsCast*/
-              StreamBuilder<ListCastTvMaze>(
-                  stream: searchCastBloc.apiResultFlux,
-                  builder:
-                      (BuildContext context, AsyncSnapshot<ListCastTvMaze> snapshot) {
-                    return snapshot.hasData
-                        ? SingleChildScrollView(
+                  _castResponse.isNotEmpty
+                      ? SingleChildScrollView(
                         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
                           SizedBox(
                             height: 180.0,
@@ -224,9 +259,9 @@ class DetailsWidget extends StatelessWidget {
                                 physics: BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
-                                itemCount: snapshot.data.casts.length,
+                                itemCount: _castResponse.length,
                                 itemBuilder: (BuildContext context, int index) {
-                                  final Cast item = snapshot.data.casts[index];
+                                  final Cast item = _castResponse[index];
                                   return Card(
                                     color: Colors.white12,
                                     shape: RoundedRectangleBorder(
@@ -258,8 +293,7 @@ class DetailsWidget extends StatelessWidget {
                         : Container(
                         child: Center(
                           child: CircularProgressIndicator(),
-                        ));
-                  }),
+                        ))
             ],
           ),
         ),

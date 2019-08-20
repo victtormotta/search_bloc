@@ -76,7 +76,7 @@ class _MySearchPageState extends State<SearchPage> {
   Widget _tvShowCard(TvShow item) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(FadeRoute(page: DetailsWidget(item)));
+        Navigator.of(context).push(FadeRoute(page: DetailsWidget(item: item)));
       },
       child: Card(
           color: Colors.transparent,
