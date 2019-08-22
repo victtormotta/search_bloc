@@ -73,6 +73,25 @@ class _MySearchPageState extends State<SearchPage> {
         ));
   }
 
+  Widget _tvShowResponseTile(){
+    return GridView.builder(
+        scrollDirection: Axis.vertical,
+        physics: PageScrollPhysics(),
+        shrinkWrap: true,
+        padding: EdgeInsets.all(5.0),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 2.0,
+          crossAxisSpacing: 2.0,
+          childAspectRatio: 0.64,
+        ),
+        itemCount: _tvShowResponse.length,
+        itemBuilder: (context, index) {
+          TvShow item = _tvShowResponse[index];
+          return _tvShowCard(item);
+        });
+  }
+
   Widget _tvShowCard(TvShow item) {
     return InkWell(
       onTap: () {
@@ -115,22 +134,7 @@ class _MySearchPageState extends State<SearchPage> {
         children: <Widget>[
           _textField(),
           _tvShowResponse.isNotEmpty
-              ? GridView.builder(
-                  scrollDirection: Axis.vertical,
-                  physics: PageScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(5.0),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 2.0,
-                    crossAxisSpacing: 2.0,
-                    childAspectRatio: 0.64,
-                  ),
-                  itemCount: _tvShowResponse.length,
-                  itemBuilder: (context, index) {
-                    TvShow item = _tvShowResponse[index];
-                    return _tvShowCard(item);
-                  })
+              ? _tvShowResponseTile()
               : Container(height: 500, child: Center(
               child: CircularProgressIndicator(),
             ))
