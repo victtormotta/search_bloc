@@ -11,6 +11,7 @@ class DetailsCastBloc extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('DetailsCastBloc redraw');
     return StreamBuilder<ListCastTvMaze>(
         stream: _searchCastBloc.apiResultFlux,
         builder:

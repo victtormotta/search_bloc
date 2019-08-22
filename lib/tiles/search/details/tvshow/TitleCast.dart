@@ -8,7 +8,7 @@ class TitleCast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    print('titleCast redraw');
     return Container(
       width: size.width + 50,
       child: Column(

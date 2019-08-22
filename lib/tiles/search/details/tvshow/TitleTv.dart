@@ -10,6 +10,7 @@ class TitleTv extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('titleTv redraw');
     return Container(
       width: size.width - 30,
       child: Column(

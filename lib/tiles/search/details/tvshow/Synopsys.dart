@@ -7,7 +7,7 @@ class Synopsis extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    print('synopsis redraw');
     return Container(
       margin: EdgeInsets.all(4),
       decoration: BoxDecoration(

@@ -12,6 +12,7 @@ class Poster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('poster redraw');
     return Column(
       children: <Widget>[
         Container(height: 10),
