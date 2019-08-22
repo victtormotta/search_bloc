@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/model/Cast.dart';
+import 'package:tvmaze_search_bloc/model/cast/Cast.dart';
+import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
 class ListCard extends StatelessWidget {
   final List<Cast> items;
@@ -36,9 +37,7 @@ class ListCard extends StatelessWidget {
                         child: FadeInImage(
                           image: NetworkImage(item.image),
                           fit: BoxFit.fill,
-                          placeholder: NetworkImage(
-                              "http://theremedyjournal.com/wp-content/uploads/2017/07/wundermag_1920x1080-128x128.jpg",
-                              ),
+                          placeholder: NetworkImage(Constants.PLACEHOLDER_CAST),
                         ),
                       ),
                     ),

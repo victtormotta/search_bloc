@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/screens/HomeScreen.dart';
-import 'package:tvmaze_search_bloc/tiles/swiper/HorizontalSwiper.dart';
-import 'screens/HomePage.dart';
 
 void main() => runApp(MyApp());
 

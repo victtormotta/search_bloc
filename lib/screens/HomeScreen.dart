@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/screens/search/SearchPageBloc.dart';
-import 'package:tvmaze_search_bloc/tiles/swiper/HorizontalSwiper.dart';
+import 'package:tvmaze_search_bloc/screens/search/SearchPage.dart';
+import 'package:tvmaze_search_bloc/screens/swiper/HorizontalSwiper.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                 break;
               case 1:
                 return CupertinoTabView(
-                  builder: (BuildContext context) => SearchPageBloc(),
+                  builder: (BuildContext context) => SearchPage(),
                   defaultTitle: 'Home Page Bloc',
                 );
                 break;

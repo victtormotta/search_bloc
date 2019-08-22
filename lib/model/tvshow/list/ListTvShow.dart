@@ -1,11 +1,11 @@
-import '../model/TvShow.dart';
+import 'package:tvmaze_search_bloc/model/tvshow/TvShow.dart';
 
-class ListFromSearchTvMaze {
+class ListTvShow {
   final List<TvShow> tvShows;
 
-  ListFromSearchTvMaze(this.tvShows);
+  ListTvShow(this.tvShows);
 
-  factory ListFromSearchTvMaze.fromJson(List<dynamic> json) {
+  factory ListTvShow.fromJson(List<dynamic> json) {
     json.shuffle();
     json = json.sublist(0, 5);
 
@@ -14,7 +14,7 @@ class ListFromSearchTvMaze {
       return TvShow.fromJson(show);
     })?.toList();
 
-    return ListFromSearchTvMaze(listShows);
+    return ListTvShow(listShows);
   }
 
 }

@@ -1,21 +1,16 @@
-import '../model/ListFromSearchTvMaze.dart';
+import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
+import 'package:tvmaze_search_bloc/model/tvshow/list/ListTvShow.dart';
 import '../services/data/Service.dart';
 import 'package:rxdart/rxdart.dart';
 
 class LoadBloc {
 
   Service _service = new Service();
-
-  final String _tvMazeAllShows = "http://api.tvmaze.com/shows";
-
-  // esse BehaviorSubject será tipado para receber apenas string
   final _loadController = new BehaviorSubject<String>();
-  // criando get
   Observable<String> get searchFlux => _loadController.stream;
-  // a forma que teremos para add eventos ao fluxo
   Sink<String> get searchEvent => _loadController.sink;
 
-  Observable<ListFromSearchTvMaze> apiResultFlux;
+  Observable<ListTvShow> apiResultFlux;
 
   LoadBloc(){
     addEventSink();
@@ -25,12 +20,11 @@ class LoadBloc {
         .switchMap((valor) => Observable.just(valor));
   }
 
-  // boa pratica p/ fechar a stream
   void dispose(){
     _loadController?.close();
   }
 
   void addEventSink(){
-    searchEvent.add(_tvMazeAllShows);
+    searchEvent.add("${Constants.URL_LOAD}");
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/transition/FadeRoute.dart';
-
+import 'package:tvmaze_search_bloc/component/transition/FadeRoute.dart';
+import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 import 'PosterFullSize.dart';
 
 class Poster extends StatelessWidget {
@@ -28,8 +28,7 @@ class Poster extends StatelessWidget {
                   fit: BoxFit.cover,
                   height: size.height / 2,
                   width: size.width - 10,
-                  placeholder: NetworkImage(
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB7suUSfqcNx7SVHZoskbX1LoDsx_XC7A789qGRl4F-1eDYq5f"),
+                  placeholder: NetworkImage(Constants.PLACEHOLDER_POSTER),
                 ),
               ),
             ),

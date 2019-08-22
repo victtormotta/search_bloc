@@ -1,20 +1,20 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchCastBloc.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/Poster.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/Synopsys.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/TitleCast.dart';
-import 'package:tvmaze_search_bloc/tiles/search/details/tvshow/TitleTv.dart';
-import '../../../../model/TvShow.dart';
-import 'package:flutter/material.dart';
-import 'cast/DetailsCastBloc.dart';
+import 'package:tvmaze_search_bloc/model/tvshow/TvShow.dart';
+import 'package:tvmaze_search_bloc/screens/search/details/cast/DetailsCastList.dart';
+import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/Poster.dart';
+import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/Synopsys.dart';
+import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/TitleTv.dart';
+import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/TitleCast.dart';
 
 /*
   Class responsible for display tvshow's details; such as synopis, cast, etc;
  */
-class DetailsWidget extends StatelessWidget {
+class DetailsPage extends StatelessWidget {
   final TvShow item;
 
-  DetailsWidget(this.item);
+  DetailsPage(this.item);
 
 
   @override
@@ -51,7 +51,7 @@ class DetailsWidget extends StatelessWidget {
               Synopsis(
                   item.summary),
               TitleCast(size),
-              DetailsCastBloc(
+              DetailsCastList(
                   searchCastBloc),
             ],
           ),

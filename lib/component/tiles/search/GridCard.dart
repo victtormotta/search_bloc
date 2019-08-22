@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/model/TvShow.dart';
-import '../../model/ListFromSearchTvMaze.dart';
+import 'package:tvmaze_search_bloc/model/tvshow/TvShow.dart';
+import 'package:tvmaze_search_bloc/model/tvshow/list/ListTvShow.dart';
 
-import 'package:tvmaze_search_bloc/tiles/search/TvShowCard.dart';
+import 'TvShowCard.dart';
 
 /*
   Class responsible for the tvshow card;
  */
 class GridCard extends StatelessWidget {
-  final ListFromSearchTvMaze listFromSearchTvMaze;
+  final ListTvShow listTvShow;
 
-  GridCard(this.listFromSearchTvMaze);
+  GridCard(this.listTvShow);
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,9 @@ class GridCard extends StatelessWidget {
           crossAxisSpacing: 2.0,
           childAspectRatio: 0.64,
         ),
-        itemCount: listFromSearchTvMaze.tvShows.length,
+        itemCount: listTvShow.tvShows.length,
         itemBuilder: (context, index) {
-          TvShow item = listFromSearchTvMaze.tvShows[index];
+          TvShow item = listTvShow.tvShows[index];
           return TvShowCard(item);
         });
   }

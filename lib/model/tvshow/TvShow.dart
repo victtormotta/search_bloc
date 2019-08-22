@@ -1,4 +1,5 @@
 import 'package:html/parser.dart';
+import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
 class TvShow {
   /*
@@ -51,10 +52,10 @@ class TvShow {
       if(json.containsKey("show") && json["show"]["image"] != null) {
         return json["show"]["image"] != null ?
         json["show"]["image"]["original"] as String
-            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw";
+            : Constants.PLACEHOLDER_TV_SHOW;
       } else return json["image"] != null ?
       json["image"]["original"] as String
-          : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw";
+          : Constants.PLACEHOLDER_TV_SHOW;
     }
 
     String returnStatusValue(json) {
@@ -75,6 +76,9 @@ class TvShow {
       String parsedString = parse(document.body.text).documentElement.text;
       return parsedString;
     }
+    /*
+    https://stackoverflow.com/questions/51593790/remove-html-tags-from-a-string-in-dart
+     */
 
     String returnSummaryValue(json) {
       if(json.containsKey("show")) {

@@ -1,8 +1,4 @@
-import 'package:tvmaze_search_bloc/model/tvshow/list/ListTvShow.dart';
-import '../services/data/Service.dart';
 import 'package:rxdart/rxdart.dart';
-
-import 'Bloc.dart';
 /*
   O fluxo atual recebe string então, é feito uma transformação p/ objeto da classe SearchResult;
 
@@ -22,16 +18,16 @@ import 'Bloc.dart';
 
   */
 
-class SearchBloc extends Bloc {
+class Bloc {
+  // esse BehaviorSubject será tipado para receber apenas string
+  final _searchController = new BehaviorSubject<String>();
+  // criando get
+  Observable<String> get searchFlux => _searchController.stream;
+  // a forma que teremos para add eventos ao fluxo
+  Sink<String> get searchEvent => _searchController.sink;
 
-  Observable<ListTvShow> apiResultFlux;
-
-  SearchBloc(){
-    apiResultFlux = searchFlux
-        .distinct()
-//        .where((valor) => valor.length > 3)
-        .debounceTime(const Duration(milliseconds: 600))
-        .asyncMap(new Service().search)
-        .switchMap((valor) => Observable.just(valor));
+  // boa pratica p/ fechar a stream
+  void dispose(){
+    _searchController?.close();
   }
 }

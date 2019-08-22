@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/tiles/search/GridCard.dart';
-import 'package:tvmaze_search_bloc/tiles/search/SearchTextField.dart';
+import 'package:tvmaze_search_bloc/component/tiles/search/GridCard.dart';
+import 'package:tvmaze_search_bloc/component/tiles/search/SearchTextField.dart';
+import 'package:tvmaze_search_bloc/model/tvshow/list/ListTvShow.dart';
 import '../../blocs/SearchBloc.dart';
-import '../../model/ListFromSearchTvMaze.dart';
 
 /*
   Class responsible for the search; Bloc implemented;
  */
 
-class SearchPageBloc extends StatefulWidget {
-  SearchPageBloc({Key key, this.title}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  SearchPage({Key key, this.title}) : super(key: key);
 
   final String title;
 
@@ -18,7 +18,7 @@ class SearchPageBloc extends StatefulWidget {
   _MySearchPageBlocStateBloc createState() => _MySearchPageBlocStateBloc();
 }
 
-class _MySearchPageBlocStateBloc extends State<SearchPageBloc> {
+class _MySearchPageBlocStateBloc extends State<SearchPage> {
   // BEGIN BLOC
   SearchBloc _searchBloc;
 
@@ -43,15 +43,15 @@ class _MySearchPageBlocStateBloc extends State<SearchPageBloc> {
           // SearchTvShowTile -> sending searchbloc to textSearch
           TvShowSearchTile(_searchBloc),
           // StreamBuilder -> widget que é capaz de modificar o estado dele ouvind um fluxo de dados
-          StreamBuilder<ListFromSearchTvMaze>(
+          StreamBuilder<ListTvShow>(
               stream: _searchBloc.apiResultFlux,
               builder:
                   (BuildContext context,
-                  AsyncSnapshot<ListFromSearchTvMaze> snapshot) {
+                  AsyncSnapshot<ListTvShow> snapshot) {
                 return snapshot.hasData
                     ? GridCard(snapshot.data)
                     : Container(height: 500, child: Center(
-                  child: CircularProgressIndicator(),
+//                  child: CircularProgressIndicator(),
                 ));
               })
         ],

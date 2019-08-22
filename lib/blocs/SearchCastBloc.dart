@@ -1,26 +1,16 @@
-import 'package:tvmaze_search_bloc/model/ListCastTvMaze.dart';
-
-import '../model/ListFromSearchTvMaze.dart';
+import 'package:tvmaze_search_bloc/blocs/Bloc.dart';
+import 'package:tvmaze_search_bloc/model/cast/list/ListCast.dart';
 import '../services/data/Service.dart';
 import 'package:rxdart/rxdart.dart';
 
-class SearchCastBloc {
+class SearchCastBloc extends Bloc {
 
-  Service _service = new Service();
-  final _searchCastController = new BehaviorSubject<String>();
-  Observable<String> get searchFlux => _searchCastController.stream;
-  Sink<String> get searchEvent => _searchCastController.sink;
-  Observable<ListCastTvMaze> apiResultFlux;
+  Observable<ListCast> apiResultFlux;
 
   SearchCastBloc(){
     apiResultFlux = searchFlux
         .distinct()
-        .asyncMap(_service.searchCast)
+        .asyncMap(new Service().searchCast)
         .switchMap((valor) => Observable.just(valor));
   }
-
-  void dispose(){
-    _searchCastController?.close();
-  }
-
 }
