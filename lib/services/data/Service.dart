@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
+import 'package:tvmaze_search_bloc/model/episode/list/ListEpisode.dart';
 import 'package:tvmaze_search_bloc/model/tvshow/list/ListTvShow.dart';
 import 'package:tvmaze_search_bloc/model/cast/list/ListCast.dart';
 
@@ -21,6 +22,16 @@ class Service{
     try{
       Response response = await dio.get("${Constants.URL_SEARCH_CAST(showId)}");
       return ListCast.fromJson(response.data['_embedded']['cast']);
+    } catch(e){
+      throw SocketException(e);
+    }
+  }
+
+  Future<ListEpisode> searchEpisodes(String showId) async {
+    try{
+      print("${Constants.URL_EPISODES(showId)}");
+      Response response = await dio.get("${Constants.URL_EPISODES(showId)}");
+      return ListEpisode.fromJson(response.data);
     } catch(e){
       throw SocketException(e);
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/blocs/LoadBloc.dart';
+import 'package:tvmaze_search_bloc/blocs/SearchEpisodeBloc.dart';
 import 'package:tvmaze_search_bloc/component/tiles/swiper/LogoTvMaze.dart';
 import 'package:tvmaze_search_bloc/component/tiles/swiper/recomendations/RecomendationsTile.dart';
 import 'package:tvmaze_search_bloc/model/tvshow/list/ListTvShow.dart';
@@ -40,7 +41,7 @@ class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
           Container(height: 30),
           /* Image LogoTvMaze */
           LogoTvMaze(),
-          Container(height: 20),
+          Container(height: 40),
           StreamBuilder<ListTvShow>(
             stream: _loadBloc.apiResultFlux,
             builder: (BuildContext context,

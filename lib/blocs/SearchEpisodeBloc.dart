@@ -1,24 +1,19 @@
 import 'package:tvmaze_search_bloc/blocs/Bloc.dart';
+import 'package:tvmaze_search_bloc/model/episode/list/ListEpisode.dart';
 import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
-import 'package:tvmaze_search_bloc/model/tvshow/list/ListTvShow.dart';
 import '../services/data/Service.dart';
 import 'package:rxdart/rxdart.dart';
 /*
-  Load all shows from TvMaze
+  Search cast based on show's id
  */
-class LoadBloc extends Bloc{
+class SearchEpisodeBloc extends Bloc {
 
-  Observable<ListTvShow> apiResultFlux;
+  Observable<ListEpisode> apiResultFlux;
 
-  LoadBloc(){
-    addEventSink();
+  SearchEpisodeBloc(){
     apiResultFlux = searchFlux
         .distinct()
-        .asyncMap(new Service().load)
+        .asyncMap(new Service().searchEpisodes)
         .switchMap((valor) => Observable.just(valor));
-  }
-
-  void addEventSink(){
-    searchEvent.add("${Constants.URL_LOAD}");
   }
 }

@@ -17,7 +17,7 @@ class RecomendationsTile extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-            height: 480,
+            height: size.width,
             child: Swiper(
               itemBuilder: (BuildContext context, int index) {
                 TvShow item = listTvShows[index];
@@ -29,8 +29,8 @@ class RecomendationsTile extends StatelessWidget {
               itemCount: listTvShows.length,
               containerHeight: 0.9,
               pagination: SwiperPagination(),
-              itemWidth: size.width/2 + 70,
-              itemHeight: size.height - 20,
+              itemWidth: size.width/1.25,
+              itemHeight: size.height,
               layout: SwiperLayout.STACK,
             )),
       ],

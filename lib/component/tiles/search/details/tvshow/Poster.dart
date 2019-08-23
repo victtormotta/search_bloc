@@ -26,7 +26,7 @@ class Poster extends StatelessWidget {
                   image: NetworkImage(image),
                   //half-size page
                   fit: BoxFit.cover,
-                  height: size.height / 2,
+                  height: size.height/2,
                   width: size.width - 10,
                   placeholder: NetworkImage(Constants.PLACEHOLDER_POSTER),
                 ),
