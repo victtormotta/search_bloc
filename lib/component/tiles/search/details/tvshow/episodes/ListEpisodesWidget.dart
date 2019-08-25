@@ -96,6 +96,7 @@ class ListEpisodesWidget extends StatelessWidget {
                     Card(
                       color: Colors.black26,
                       margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                      elevation: 4.0,
                       child: ExpansionTile(
                         title: Text(
                           item.name,
@@ -127,9 +128,9 @@ class ListEpisodesWidget extends StatelessWidget {
                                 item.summary,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w600,
+                                    fontWeight: FontWeight.w500,
                                     color: Colors.grey[200],
-                                    fontSize: 15),
+                                    fontSize: 14),
                               ),
                             ),
                           ),
