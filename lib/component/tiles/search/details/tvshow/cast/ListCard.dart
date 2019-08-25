@@ -26,22 +26,49 @@ class ListCard extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(9.0),
                   ),
-                  child: Center(
-                      child: AspectRatio(
-                    aspectRatio: 0.7,
-                    child: Hero(
-                      tag: item.url,
-                      transitionOnUserGestures: true,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: FadeInImage(
-                          image: NetworkImage(item.image),
-                          fit: BoxFit.fill,
-                          placeholder: NetworkImage(Constants.PLACEHOLDER_CAST),
-                        ),
-                      ),
-                    ),
-                  )),
+                  child: 
+                  Stack(
+                    children: <Widget>[
+
+                       Center(
+                            child: AspectRatio(
+                          aspectRatio: 0.7,
+                          child: Hero(
+                            tag: item.url,
+                            transitionOnUserGestures: true,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: FadeInImage(
+                                image: NetworkImage(item.image),
+                                fit: BoxFit.fill,
+                                placeholder: NetworkImage(Constants.PLACEHOLDER_CAST),
+                              ),
+                            ),
+                          ),
+                        )),
+                       
+                       Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(4.0),
+                              ),
+                              margin: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+                              elevation: 6.0,
+                              color: Colors.grey[900],
+                              child: Text(
+                              " ${item.name}",
+                              style: TextStyle(
+                                  color: Colors.white70, 
+                                  fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                            ),
+                       )
+
+
+                    ],
+                  )
                 );
               }),
         ),
