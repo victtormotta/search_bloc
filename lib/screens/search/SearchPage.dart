@@ -5,8 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search/screens/search/details/tvshow/DetailsWidget.dart';
 import 'package:tvmaze_search/transition/FadeRoute.dart';
-import '../../model/ListFromSearchTvMaze.dart';
-import '../../model/TvShow.dart';
+import 'package:tvmaze_search/model/tvshow/list/ListFromSearchTvMaze.dart';
+import 'package:tvmaze_search/model/tvshow/TvShow.dart';
+import 'package:tvmaze_search/constants/Constants.dart' as Constants;
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key key, this.title}) : super(key: key);
@@ -23,8 +24,9 @@ class _MySearchPageState extends State<SearchPage> {
 
   Future<void> _search(String text) async {
     try {
+      //http://api.tvmaze.com/search/shows?q=
       Response response =
-          await Dio().get("http://api.tvmaze.com/search/shows?q=${text}");
+          await Dio().get(Constants.URL_SEARCH(text));
 
       List<TvShow> searchedItems = ListFromSearchTvMaze.fromJson(response.data).tvShows;
 
@@ -95,7 +97,7 @@ class _MySearchPageState extends State<SearchPage> {
   Widget _tvShowCard(TvShow item) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(FadeRoute(page: DetailsWidget(item: item)));
+        Navigator.of(context).push(FadeRoute(page: DetailsWidget(item:item)));
       },
       child: Card(
           color: Colors.transparent,
@@ -117,7 +119,7 @@ class _MySearchPageState extends State<SearchPage> {
                       image: NetworkImage(item.image),
                       fit: BoxFit.fill,
                       placeholder: NetworkImage(
-                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw"),
+                          Constants.PLACEHOLDER_TV_SHOW),
                     ),
                   ),
                 ),

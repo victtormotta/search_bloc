@@ -1,5 +1,5 @@
-import '../model/TvShow.dart';
-import 'Cast.dart';
+import 'package:tvmaze_search/model/tvshow/TvShow.dart';
+import 'package:tvmaze_search/model/cast/Cast.dart';
 
 class ListCastTvMaze {
   final List<Cast> casts;

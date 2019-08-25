@@ -1,3 +1,5 @@
+import 'package:tvmaze_search/constants/Constants.dart' as Constants;
+
 class Cast {
   /*
   Classe que representa cada item da pesquisa;
@@ -44,10 +46,10 @@ class Cast {
       if(json.containsKey("person") && json["person"]["image"] != null) {
         return json["person"]["image"] != null ?
         json["person"]["image"]["original"] as String
-            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw";
+            : Constants.PLACEHOLDER_CAST;
       }
 
-      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw";
+      return Constants.PLACEHOLDER_CAST;
     }
 
     return Cast(

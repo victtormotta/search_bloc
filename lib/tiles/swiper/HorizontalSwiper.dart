@@ -4,11 +4,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:tvmaze_search/model/ListFromSearchTvMaze.dart';
-import 'package:tvmaze_search/model/TvShow.dart';
+import 'package:tvmaze_search/model/tvshow/list/ListFromSearchTvMaze.dart';
+import 'package:tvmaze_search/model/tvshow/TvShow.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
 import 'package:tvmaze_search/screens/search/details/tvshow/DetailsWidget.dart';
 import 'package:tvmaze_search/transition/FadeRoute.dart';
+import 'package:tvmaze_search/constants/Constants.dart' as Constants;
 
 class HorizontalSwiper extends StatefulWidget {
   HorizontalSwiper({Key key, this.title}) : super(key: key);
@@ -16,16 +17,15 @@ class HorizontalSwiper extends StatefulWidget {
   final String title;
 
   @override
-  _HorizontalSwiperBloc createState() => _HorizontalSwiperBloc();
+  _MyHorizontalSwiper createState() => _MyHorizontalSwiper();
 }
 
-class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
+class _MyHorizontalSwiper extends State<HorizontalSwiper> {
   List<TvShow> _tvShowResponse = List<TvShow>();
-  final _random = new Random();
 
   @override
   initState(){
-    String url = "http://api.tvmaze.com/shows";
+    String url = Constants.URL_LOAD;
     _search(url);
   }
 
@@ -60,7 +60,7 @@ class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
                 image: NetworkImage(item.image),
                 fit: BoxFit.cover,
                 placeholder: NetworkImage(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwt_P-IiO7iiAGO3n-5nTfhR7JoLJI8wsqO_kGqm9Y4H0qcAijdw"),
+                    Constants.PLACEHOLDER_TV_SHOW),
               ),
             ),
           ),
@@ -87,7 +87,7 @@ class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
         Container(
           height: 30,
           child: Image.network(
-            "https://static.tvmaze.com/images/tvm-header-logo.png",
+            Constants.LOGO_TV_MAZE,
             fit: BoxFit.fitHeight,
             ),
           ),
@@ -109,9 +109,8 @@ class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
                     itemCount: _tvShowResponse.length,
                     pagination: SwiperPagination(),
                     containerHeight: 0.9,
-                    autoplayDelay: 5000,
-                    itemWidth: size.width/2 + 70,
-                    itemHeight: size.height - 20,
+                    itemWidth: size.width/1.25,
+                    itemHeight: size.height,
                     layout: SwiperLayout.STACK,
                   )),
               Container(height: 50,),
