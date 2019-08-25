@@ -4,6 +4,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tvmaze_search/model/episode/Episode.dart';
 import 'package:tvmaze_search/model/episode/list/ListEpisode.dart';
+import 'package:tvmaze_search/model/season/Season.dart';
+import 'package:tvmaze_search/model/season/list/ListSeason.dart';
 import 'package:tvmaze_search/transition/FadeRoute.dart';
 import 'package:tvmaze_search/model/cast/list/ListCastTvMaze.dart';
 import 'package:tvmaze_search/model/cast/Cast.dart';
@@ -28,13 +30,15 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
 
   List<Cast> _castResponse = List<Cast>();
   List<Episode> _episodesResponse = List<Episode>();
+  List<Season> _seasonsResponse = List<Season>();
+
   String showId = "";
 
   @override
   initState(){
     if (widget.item.id != showId) {
       _search(widget.item.id);
-      _searchEpisodes(widget.item.id);
+      _searchSeasons(widget.item.id);
       showId = widget.item.id;
     }
   }
@@ -66,6 +70,21 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
 
       setState(() {
         _episodesResponse = searchedItems;
+      });
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> _searchSeasons(String showId) async {
+    try {
+      Response response =
+      await Dio().get(Constants.URL_SEASONS(showId));
+
+      List<Season> searchedItems = ListSeason.fromJson(response.data).seasons;
+
+      setState(() {
+        _seasonsResponse = searchedItems;
       });
     } on DioError catch (e) {
       print(e);
@@ -111,8 +130,8 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
               /*TitleEpisodes*/
               _titleEpisodes(size),
               /*episode response from search*/
-              _episodesResponse.isNotEmpty
-                     ? _episodesResponseTile(_episodesResponse)
+              _seasonsResponse.isNotEmpty
+                     ? _episodesResponseTile( _seasonsResponse)
                         : Container(
                         child: Center(
                           child: CircularProgressIndicator(),
@@ -418,18 +437,8 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
       ),
     );
   }
-  Widget _episodesResponseTile(List<Episode> items){
+  Widget _episodesResponseTile(List<Season> seasons){
     print('episodesResponseTile redraw');
-
-    List<String> seasons = [];
-
-    for(int i = 0; i < items.length; i++){
-      seasons.add(items[i].season);
-    }
-    // remove duplicados
-    seasons = seasons.toSet().toList();
-    print(seasons);
-
 
     return SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
@@ -443,23 +452,25 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
                 itemCount: seasons.length,
                 itemBuilder: (BuildContext context, int index) {
                   // criando index das seasons
-                  final indexSeason = index + 1;
+                  final int seasonNumber = index + 1;
 
                   final episodesByIndex = [];
+
+                  _searchEpisodes(widget.item.id);
+
                   // percorre a lista, se nao tiver na indexSeason, remove o episode
-                  for(int i = 0; i < items.length; i++){
-                    if(int.parse(items[i].season) == indexSeason)
-                      episodesByIndex.add(items.elementAt(i));
+                  for(Episode episode in _episodesResponse){
+                    if(int.parse(episode.season) == seasonNumber)
+                      episodesByIndex.add(episode);
                   }
 
-                  return
-                    Card(
+                  return Card(
                       color: Colors.black26,
                       margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                       child: ExpansionTile(
 
                         title: Text(
-                          "SEASON $indexSeason",
+                          "SEASON $seasonNumber",
                           textAlign: TextAlign.start,
                           style: TextStyle(
                               fontWeight: FontWeight.w500, color: Colors.white),
@@ -468,7 +479,6 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
                         children: <Widget>[
                           _returnCardEpisode(episodesByIndex),
                         ],
-
 
                       ),
                     );
