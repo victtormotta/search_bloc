@@ -1,3 +1,4 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchEpisodeBloc.dart';
@@ -20,31 +21,19 @@ import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
 class _DetailsEpisodeListState extends State<DetailsEpisodeList> {
 
-  SearchEpisodeBloc searchEpisodeBloc;
-
-  @override
-  void initState() {
-    searchEpisodeBloc = new SearchEpisodeBloc();
-    searchEpisodeBloc.searchEvent.add(widget.id);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    searchEpisodeBloc?.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     print('DetailsEpisodeList redraw');
+
+    SearchEpisodeBloc searchEpisodeBloc = BlocProvider.of<SearchEpisodeBloc>(context);
 
     return StreamBuilder<ListEpisode>(
         stream: searchEpisodeBloc.apiResultFlux,
         builder:
             (BuildContext context, AsyncSnapshot<ListEpisode> snapshot) {
           return snapshot.hasData
-              ? CardEpisodes(searchEpisodeBloc.returnEpisodesBySeason(snapshot.data.episodes, widget.seasonNumber))
+              ? _cardEpisodes(searchEpisodeBloc.returnEpisodesBySeason(snapshot.data.episodes, widget.seasonNumber))
               : Container(
               child: Center(
                 child: CircularProgressIndicator(),

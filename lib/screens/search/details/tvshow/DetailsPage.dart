@@ -1,9 +1,11 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchCastBloc.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchEpisodeBloc.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchSeasonBloc.dart';
 import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/episodes/TitleEpisodes.dart';
+import 'package:tvmaze_search_bloc/model/season/list/ListSeason.dart';
 import 'package:tvmaze_search_bloc/model/tvshow/TvShow.dart';
 import 'package:tvmaze_search_bloc/screens/search/details/cast/DetailsCastList.dart';
 import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/Poster.dart';
@@ -15,7 +17,7 @@ import 'package:tvmaze_search_bloc/screens/search/details/seasons/DetailsSeasonL
 
 
 
-/*class DetailsPage extends StatefulWidget {
+class DetailsPage extends StatefulWidget {
 
   final TvShow item;
 
@@ -28,10 +30,10 @@ import 'package:tvmaze_search_bloc/screens/search/details/seasons/DetailsSeasonL
 class _DetailsPageState extends State<DetailsPage> {
   @override
   Widget build(BuildContext context) {
-    *//*method to get actual size of device*//*
+    /*method to get actual size of device*/
     Size size = MediaQuery.of(context).size;
 
-    *//*add id of tvshow to be listen on Bloc's Sink*//*
+    /*add id of tvshow to be listen on Bloc's Sink*/
     final SearchCastBloc searchCastBloc = SearchCastBloc();
     searchCastBloc.searchEvent.add(widget.item.id);
 
@@ -52,7 +54,7 @@ class _DetailsPageState extends State<DetailsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              *//*separation of items to be displayed on widgets*//*
+              /*separation of items to be displayed on widgets*/
               Poster(
                   size,
                   widget.item.url,
@@ -67,21 +69,22 @@ class _DetailsPageState extends State<DetailsPage> {
               DetailsCastList(searchCastBloc),
               TitleEpisodes(size),
               DetailsSeasonList(widget.item.id, searchSeasonBloc),
-*//*              TitleEpisodes(size),
-              DetailsEpisodeList(searchEpisodeBloc),*//*
+/*              TitleEpisodes(size),
+              DetailsEpisodeList(searchEpisodeBloc),*/
             ],
           ),
         ),
       ),
     );
   }
-}*/
+}
 
 
 
 /*
   Class responsible for display tvshow's details; such as synopis, cast, etc;
  */
+/*
 class DetailsPage extends StatelessWidget {
   final TvShow item;
 
@@ -90,17 +93,24 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*method to get actual size of device*/
+    */
+/*method to get actual size of device*//*
+
 
     Size size = MediaQuery.of(context).size;
 
-    /*add id of tvshow to be listen on Bloc's Sink*/
+    */
+/*add id of tvshow to be listen on Bloc's Sink*//*
+
 
     final SearchCastBloc searchCastBloc = SearchCastBloc();
     searchCastBloc.searchEvent.add(item.id);
 
     final SearchSeasonBloc searchSeasonBloc = SearchSeasonBloc();
     searchSeasonBloc.searchEvent.add(item.id);
+
+    final SearchEpisodeBloc searchEpisodeBloc = new SearchEpisodeBloc();
+    searchEpisodeBloc.searchEvent.add(item.id);
 
     return CupertinoPageScaffold(
       backgroundColor: Colors.white12,
@@ -116,7 +126,9 @@ class DetailsPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              /*separation of items to be displayed on widgets*/
+              */
+/*separation of items to be displayed on widgets*//*
+
               Poster(
                   size,
                   item.url,
@@ -131,8 +143,10 @@ class DetailsPage extends StatelessWidget {
               DetailsCastList(searchCastBloc),
               TitleEpisodes(size),
               DetailsSeasonList(item.id, searchSeasonBloc),
+*/
 /*              TitleEpisodes(size),
-              DetailsEpisodeList(searchEpisodeBloc),*/
+              DetailsEpisodeList(searchEpisodeBloc),*//*
+
 
             ],
           ),
@@ -141,3 +155,4 @@ class DetailsPage extends StatelessWidget {
     );
   }
 }
+*/

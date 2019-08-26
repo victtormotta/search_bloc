@@ -12,9 +12,7 @@ class CardEpisodes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    for(Episode ep in episodesByIndex){
-        print(ep.idEpisode);
-    }
+
     return SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
       SizedBox(
