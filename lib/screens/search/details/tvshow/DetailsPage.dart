@@ -1,4 +1,3 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchCastBloc.dart';
@@ -14,8 +13,6 @@ import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/TitleTv
 import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/TitleCast.dart';
 import 'package:tvmaze_search_bloc/screens/search/details/episodes/DetailsEpisodeList.dart';
 import 'package:tvmaze_search_bloc/screens/search/details/seasons/DetailsSeasonList.dart';
-
-
 
 class DetailsPage extends StatefulWidget {
 
@@ -68,7 +65,7 @@ class _DetailsPageState extends State<DetailsPage> {
               TitleCast(size),
               DetailsCastList(searchCastBloc),
               TitleEpisodes(size),
-              DetailsSeasonList(widget.item.id, searchSeasonBloc),
+              DetailsSeasonList(id: widget.item.id, searchSeasonBloc: searchSeasonBloc),
 /*              TitleEpisodes(size),
               DetailsEpisodeList(searchEpisodeBloc),*/
             ],

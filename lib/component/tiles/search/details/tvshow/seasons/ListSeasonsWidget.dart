@@ -1,22 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/seasons/CardSeasons.dart';
 import 'package:tvmaze_search_bloc/model/season/Season.dart';
+import 'package:tvmaze_search_bloc/model/episode/Episode.dart';
+import 'package:tvmaze_search_bloc/blocs/SearchEpisodeBloc.dart';
+import 'package:tvmaze_search_bloc/component/transition/FadeRoute.dart';
+import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
+import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/PosterFullSize.dart';
+
+import 'CardSeasons.dart';
 
 
-/*class ListSeasonsWidget extends StatefulWidget {
+class ListSeasonsWidget extends StatefulWidget {
+  ListSeasonsWidget({Key key, this.id, this.seasons}) : super(key: key);
 
   final String id;
   final List<Season> seasons;
-
-  ListSeasonsWidget(this.id, this.seasons);
 
   @override
   _ListSeasonsWidgetState createState() => _ListSeasonsWidgetState();
 }
 
 class _ListSeasonsWidgetState extends State<ListSeasonsWidget> {
+
+  SearchEpisodeBloc searchEpisodeBloc;
+
   @override
   Widget build(BuildContext context) {
+
+    searchEpisodeBloc = new SearchEpisodeBloc();
+    searchEpisodeBloc.searchEvent.add(widget.id);
+
     return SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           SizedBox(
@@ -29,7 +41,7 @@ class _ListSeasonsWidgetState extends State<ListSeasonsWidget> {
                 itemCount: widget.seasons.length,
                 itemBuilder: (BuildContext context, int index) {
                   final Season season = widget.seasons[index];
-                  return CardSeasons(widget.id, season.number);
+                  return CardSeasons(id: widget.id, seasonNumber: season.number);
                 }),
           ),
           Container(
@@ -37,10 +49,11 @@ class _ListSeasonsWidgetState extends State<ListSeasonsWidget> {
           )
         ]));
   }
-}*/
+}
 
 
-class ListSeasonsWidget extends StatelessWidget {
+
+/*class ListSeasonsWidget extends StatelessWidget {
   final String id;
   final List<Season> seasons;
 
@@ -69,4 +82,4 @@ class ListSeasonsWidget extends StatelessWidget {
           )
         ]));
   }
-}
+}*/

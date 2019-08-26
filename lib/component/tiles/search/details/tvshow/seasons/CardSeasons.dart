@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/screens/search/details/episodes/DetailsEpisodeList.dart';
 
 
-/*class CardSeasons extends StatefulWidget {
+class CardSeasons extends StatefulWidget {
+  CardSeasons({Key key, this.id, this.seasonNumber}) : super(key: key);
 
   final String id;
   final String seasonNumber;
-
-  CardSeasons(this.id, this.seasonNumber);
 
   @override
   _CardSeasonsState createState() => _CardSeasonsState();
@@ -29,16 +28,17 @@ class _CardSeasonsState extends State<CardSeasons> {
         ),
         leading: Icon(Icons.tv, color: Colors.teal,),
         children: <Widget>[
-          *//* get details of episode by season number and episode search *//*
-          DetailsEpisodeList(widget.id, widget.seasonNumber),
+        /*get details of episode by season number and episode search */
+
+          DetailsEpisodeList(id: widget.id, seasonNumber: widget.seasonNumber),
         ],
       ),
     );
   }
-}*/
+}
 
 
-class CardSeasons extends StatelessWidget {
+/*class CardSeasons extends StatelessWidget {
   final String id;
   final String seasonNumber;
 
@@ -59,10 +59,12 @@ class CardSeasons extends StatelessWidget {
         ),
         leading: Icon(Icons.tv, color: Colors.teal,),
         children: <Widget>[
-          /* get details of episode by season number and episode search */
-          DetailsEpisodeList(id, seasonNumber),
+
+        *//*get details of episode by season number and episode search *//*
+          DetailsEpisodeList(id: id, seasonNumber: seasonNumber),
         ],
       ),
     );
   }
-}
+}*/
+

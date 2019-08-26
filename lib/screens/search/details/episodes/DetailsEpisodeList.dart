@@ -1,4 +1,3 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchEpisodeBloc.dart';
@@ -9,11 +8,11 @@ import 'package:tvmaze_search_bloc/model/episode/list/ListEpisode.dart';
 import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/episodes/CardEpisodes.dart';
 import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
-/*class DetailsEpisodeList extends StatefulWidget {
+class DetailsEpisodeList extends StatefulWidget {
+  DetailsEpisodeList({Key key, this.id, this.seasonNumber}) : super(key: key);
+
   final String id;
   final String seasonNumber;
-
-  DetailsEpisodeList(this.id, this.seasonNumber);
 
   @override
   _DetailsEpisodeListState createState() => _DetailsEpisodeListState();
@@ -26,22 +25,25 @@ class _DetailsEpisodeListState extends State<DetailsEpisodeList> {
   Widget build(BuildContext context) {
     print('DetailsEpisodeList redraw');
 
-    SearchEpisodeBloc searchEpisodeBloc = BlocProvider.of<SearchEpisodeBloc>(context);
+    final SearchEpisodeBloc searchEpisodeBloc = new SearchEpisodeBloc();
+    searchEpisodeBloc.searchEvent.add(widget.id);
 
     return StreamBuilder<ListEpisode>(
         stream: searchEpisodeBloc.apiResultFlux,
         builder:
             (BuildContext context, AsyncSnapshot<ListEpisode> snapshot) {
           return snapshot.hasData
-              ? _cardEpisodes(searchEpisodeBloc.returnEpisodesBySeason(snapshot.data.episodes, widget.seasonNumber))
+              ? CardEpisodes(
+              episodesByIndex: searchEpisodeBloc.returnEpisodesBySeason(
+                  snapshot.data.episodes, widget.seasonNumber))
               : Container(
               child: Center(
                 child: CircularProgressIndicator(),
               ));
         });
   }
-
-  Widget _cardEpisodes(episodesByIndex){
+}
+/*  Widget _cardEpisodes(episodesByIndex){
     return SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           SizedBox(
@@ -128,20 +130,27 @@ class _DetailsEpisodeListState extends State<DetailsEpisodeList> {
             height: 20,
           )
         ]));
-  }
-}*/
+  }*//*
 
+}
 
+*/
+/*
 class DetailsEpisodeList extends StatelessWidget {
+
+  const DetailsEpisodeList({Key key, this.id, this.seasonNumber}): super(key: key);
+
   final String id;
   final String seasonNumber;
-
-  DetailsEpisodeList(this.id, this.seasonNumber);
 
   @override
   Widget build(BuildContext context) {
     print('DetailsEpisode redraw');
-    /* consulta de episodios BLOC */
+    *//*
+*/
+/* consulta de episodios BLOC *//*
+*/
+/*
     final SearchEpisodeBloc searchEpisodeBloc = new SearchEpisodeBloc();
     searchEpisodeBloc.searchEvent.add(id);
 
@@ -157,4 +166,5 @@ class DetailsEpisodeList extends StatelessWidget {
               ));
         });
   }
-}
+}*/
+
