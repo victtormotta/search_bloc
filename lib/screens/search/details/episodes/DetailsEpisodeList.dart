@@ -25,7 +25,7 @@ class _DetailsEpisodeListState extends State<DetailsEpisodeList> {
   Widget build(BuildContext context) {
     print('DetailsEpisodeList redraw');
 
-    final SearchEpisodeBloc searchEpisodeBloc = new SearchEpisodeBloc();
+    final SearchEpisodeBloc searchEpisodeBloc = new SearchEpisodeBloc(widget.seasonNumber);
     searchEpisodeBloc.searchEvent.add(widget.id);
 
     return StreamBuilder<ListEpisode>(
@@ -34,8 +34,7 @@ class _DetailsEpisodeListState extends State<DetailsEpisodeList> {
             (BuildContext context, AsyncSnapshot<ListEpisode> snapshot) {
           return snapshot.hasData
               ? CardEpisodes(
-              episodesByIndex: searchEpisodeBloc.returnEpisodesBySeason(
-                  snapshot.data.episodes, widget.seasonNumber))
+              episodesByIndex: snapshot.data.episodes)
               : Container(
               child: Center(
                 child: CircularProgressIndicator(),

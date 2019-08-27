@@ -7,11 +7,7 @@ import 'SearchEpisodeBloc.dart';
 /*
   Search seasons based on show's id
  */
-class SearchSeasonBloc {
-
-  final _searchController = new BehaviorSubject<String>();
-  Observable<String> get searchFlux => _searchController.stream;
-  Sink<String> get searchEvent => _searchController.sink;
+class SearchSeasonBloc extends Bloc {
 
   Observable<ListSeason> apiResultFlux;
 
@@ -20,9 +16,5 @@ class SearchSeasonBloc {
         .distinct()
         .asyncMap(new Service().searchSeasons)
         .switchMap((valor) => Observable.just(valor));
-  }
-
-  void dispose(){
-    _searchController?.close();
   }
 }

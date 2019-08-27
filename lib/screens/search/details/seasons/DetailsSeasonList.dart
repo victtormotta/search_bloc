@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:tvmaze_search_bloc/blocs/SearchEpisodeBloc.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchSeasonBloc.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchSeasonBloc.dart';
 import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/seasons/ListSeasonsWidget.dart';

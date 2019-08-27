@@ -26,9 +26,6 @@ class _ListSeasonsWidgetState extends State<ListSeasonsWidget> {
   @override
   Widget build(BuildContext context) {
 
-    searchEpisodeBloc = new SearchEpisodeBloc();
-    searchEpisodeBloc.searchEvent.add(widget.id);
-
     return SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
           SizedBox(

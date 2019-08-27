@@ -28,8 +28,7 @@ class _CardSeasonsState extends State<CardSeasons> {
         ),
         leading: Icon(Icons.tv, color: Colors.teal,),
         children: <Widget>[
-        /*get details of episode by season number and episode search */
-
+          /*get details of episode by season number and episode search */
           DetailsEpisodeList(id: widget.id, seasonNumber: widget.seasonNumber),
         ],
       ),

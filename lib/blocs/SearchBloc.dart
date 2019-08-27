@@ -13,7 +13,7 @@ class SearchBloc extends Bloc {
   SearchBloc(){
     apiResultFlux = searchFlux
         .distinct()
-//        .where((valor) => valor.length > 3)
+        .where((valor) => valor.length > 2)
         .debounceTime(const Duration(milliseconds: 600))
         .asyncMap(new Service().search)
         .switchMap((valor) => Observable.just(valor));
