@@ -17,7 +17,7 @@ class RecomendationsTile extends StatelessWidget {
     return Column(
       children: <Widget>[
         Container(
-            height: 480,
+            height: size.height/2,
             child: Swiper(
               itemBuilder: (BuildContext context, int index) {
                 TvShow item = listTvShows[index];

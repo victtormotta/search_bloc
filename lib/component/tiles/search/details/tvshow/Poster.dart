@@ -15,19 +15,19 @@ class Poster extends StatelessWidget {
     print('poster redraw');
     return Column(
       children: <Widget>[
-        Container(height: 10),
+//        Container(height: 10),
         GestureDetector(
             child: Hero(
               tag: url ?? "url",
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(50.0),
+                borderRadius: BorderRadius.circular(0.0),
                 child: FadeInImage(
                   fadeInDuration: Duration(milliseconds: 200),
                   image: NetworkImage(image),
                   //half-size page
                   fit: BoxFit.cover,
                   height: size.height/2,
-                  width: size.width - 10,
+                  width: size.width,
                   placeholder: NetworkImage(Constants.PLACEHOLDER_POSTER),
                 ),
               ),

@@ -110,7 +110,7 @@ class DetailsPage extends StatelessWidget {
       backgroundColor: Colors.white12,
       navigationBar: CupertinoNavigationBar(
         previousPageTitle: "Back",
-        backgroundColor: Colors.grey[800],
+        backgroundColor: Colors.black12,
       ),
       child: SingleChildScrollView(
         scrollDirection: Axis.vertical,
