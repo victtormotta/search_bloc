@@ -5,6 +5,7 @@ import 'package:tvmaze_search_bloc/component/transition/FadeRoute.dart';
 import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
 
+/*
 class CardEpisodes extends StatefulWidget {
   CardEpisodes({Key key, this.episodesByIndex}) : super(key: key);
 
@@ -105,9 +106,10 @@ class _CardEpisodesState extends State<CardEpisodes> {
         ]));
   }
 }
+*/
 
 
-/*class CardEpisodes extends StatelessWidget {
+class CardEpisodes extends StatelessWidget {
   final List<Episode> episodesByIndex;
 
   CardEpisodes(this.episodesByIndex);
@@ -120,7 +122,7 @@ class _CardEpisodesState extends State<CardEpisodes> {
       SizedBox(
         height: 200.0,
         child: ListView.builder(
-            padding: EdgeInsets.fromLTRB(5, 0, 5, 5),
+            padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
@@ -133,10 +135,10 @@ class _CardEpisodesState extends State<CardEpisodes> {
                 elevation: 4.0,
                 child: ExpansionTile(
                   title: Text(
-                    item.name,
+                    "${index + 1}. ${item.name}",
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                        fontWeight: FontWeight.w500, color: Colors.white),
+                        fontWeight: FontWeight.w300, color: Colors.white),
                   ),
                   leading: GestureDetector(
                     child: Hero(
@@ -151,8 +153,6 @@ class _CardEpisodesState extends State<CardEpisodes> {
                         ),
                       ),
                     ),
-                    onTap: () => Navigator.push(
-                        context, FadeRoute(page: PosterFullSize(item.image))),
                   ),
                   children: <Widget>[
                     Container(
@@ -202,4 +202,4 @@ class _CardEpisodesState extends State<CardEpisodes> {
       )
     ]));
   }
-}*/
+}

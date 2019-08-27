@@ -6,7 +6,7 @@ import 'package:tvmaze_search_bloc/blocs/SearchSeasonBloc.dart';
 import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/seasons/ListSeasonsWidget.dart';
 import 'package:tvmaze_search_bloc/model/season/list/ListSeason.dart';
 
-class DetailsSeasonList extends StatefulWidget {
+/*class DetailsSeasonList extends StatefulWidget {
   DetailsSeasonList({Key key, this.id, this.searchSeasonBloc}) : super(key: key);
 
   final String id;
@@ -32,10 +32,10 @@ class _DetailsSeasonListState extends State<DetailsSeasonList> {
               ));
         });
   }
-}
+}*/
 
 
-/*class DetailsSeasonList extends StatelessWidget {
+class DetailsSeasonList extends StatelessWidget {
   final String id;
   final SearchSeasonBloc searchSeasonBlocBloc;
 
@@ -44,7 +44,7 @@ class _DetailsSeasonListState extends State<DetailsSeasonList> {
   @override
   Widget build(BuildContext context) {
     print('DetailsSeason redraw');
-    print(searchSeasonBlocBloc);
+//    print(searchSeasonBlocBloc);
     return StreamBuilder<ListSeason>(
         stream: searchSeasonBlocBloc.apiResultFlux,
         builder:
@@ -57,4 +57,4 @@ class _DetailsSeasonListState extends State<DetailsSeasonList> {
               ));
         });
   }
-}*/
+}

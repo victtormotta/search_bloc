@@ -46,7 +46,7 @@ class Episode {
 
     String returnImageValue(json) {
       return json["image"] != null ?
-      json["image"]["original"] as String
+      json["image"]["medium"] as String
           : Constants.PLACEHOLDER_POSTER;
     }
 
