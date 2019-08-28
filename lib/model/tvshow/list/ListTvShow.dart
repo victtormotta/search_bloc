@@ -7,7 +7,7 @@ class ListTvShow {
 
   factory ListTvShow.fromJson(List<dynamic> json) {
     json.shuffle();
-    json = json.sublist(0, 15);
+    json = json.sublist(0, 10);
 
     // pega o campo artists do json, cast como uma lista e converte cada item da lista;
     final listShows = json?.map((show) {
