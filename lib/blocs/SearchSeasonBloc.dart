@@ -10,6 +10,7 @@ import 'SearchEpisodeBloc.dart';
 class SearchSeasonBloc extends Bloc {
 
   Observable<ListSeason> apiResultFlux;
+  SearchEpisodeBloc searchEpisodeBloc;
 
   SearchSeasonBloc(){
     apiResultFlux = searchFlux
@@ -19,6 +20,9 @@ class SearchSeasonBloc extends Bloc {
   }
 
   ListSeason getSeasons(ListSeason listSeason){
+
+    searchFlux.listen((valor) => searchEpisodeBloc.searchEvent.add(valor));
+
     return listSeason;
   }
 }

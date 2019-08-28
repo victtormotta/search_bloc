@@ -17,5 +17,7 @@ class SearchBloc extends Bloc {
         .debounceTime(const Duration(milliseconds: 600))
         .asyncMap(new Service().search)
         .switchMap((valor) => Observable.just(valor));
+
+    print(searchFlux.listen((valor) => print(valor)));
   }
 }

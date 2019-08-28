@@ -13,16 +13,18 @@ class SearchEpisodeBloc extends Bloc {
 
   Observable<ListEpisode> apiResultFlux;
 
-  SearchEpisodeBloc(List<Season> listSeason){
-    apiResultFlux = searchFlux
+  SearchEpisodeBloc(String seasonNumber){
+
+//    print(searchFlux.listen((valor) => print(valor)));
+
+      apiResultFlux = searchFlux
         .distinct()
         .asyncMap(new Service().searchEpisodes)
-        .switchMap((listEpisodeFlux) => Observable.just(getEpisodesBySeason(listEpisodeFlux, listSeason)));
+        .switchMap((listEpisodeFlux) => Observable.just(getEpisodesBySeason(listEpisodeFlux, seasonNumber)));
   }
 
-  ListEpisode getEpisodesBySeason(ListEpisode listEpisode, List<Season> listSeason){
-    for(Season season in listSeason)
-      listEpisode.episodes.removeWhere((episode) => episode.season != season.number);
+  ListEpisode getEpisodesBySeason(ListEpisode listEpisode, String seasonNumber){
+    listEpisode.episodes.removeWhere((episode) => episode.season != seasonNumber);
 
     return listEpisode;
   }

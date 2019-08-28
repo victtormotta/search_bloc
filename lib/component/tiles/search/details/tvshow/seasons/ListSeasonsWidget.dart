@@ -14,9 +14,6 @@ class ListSeasonsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    SearchEpisodeBloc searchEpisodeBloc = new SearchEpisodeBloc(seasons);
-    searchEpisodeBloc.searchEvent.add(id);
-
     print('ListSeasonsWidget redraw');
     return SingleChildScrollView(
         child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
@@ -43,7 +40,7 @@ class ListSeasonsWidget extends StatelessWidget {
                       leading: Icon(Icons.tv, color: Colors.teal,),
                       children: <Widget>[
                         /* get details of episode by season number and episode search */
-                        DetailsEpisodeList(searchEpisodeBloc.apiResultFlux),
+                        DetailsEpisodeList(id, season.number),
                       ],
                     ),
                   );
