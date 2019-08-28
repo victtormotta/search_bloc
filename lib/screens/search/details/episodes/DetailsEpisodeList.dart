@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchEpisodeBloc.dart';
-import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/PosterFullSize.dart';
-import 'package:tvmaze_search_bloc/component/transition/FadeRoute.dart';
-import 'package:tvmaze_search_bloc/model/episode/Episode.dart';
 import 'package:tvmaze_search_bloc/model/episode/list/ListEpisode.dart';
 import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/episodes/CardEpisodes.dart';
-import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
 class DetailsEpisodeList extends StatelessWidget {
 
