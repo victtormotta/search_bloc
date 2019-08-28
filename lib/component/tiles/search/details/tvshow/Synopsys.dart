@@ -9,9 +9,9 @@ class Synopsis extends StatelessWidget {
   Widget build(BuildContext context) {
     print('synopsis redraw');
     return Container(
-      margin: EdgeInsets.all(4),
+      margin: EdgeInsets.all(8),
       decoration: BoxDecoration(
-          color: Colors.black45,
+          color: Colors.white12,
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(30),
               topLeft: Radius.circular(30),

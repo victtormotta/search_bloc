@@ -20,7 +20,7 @@ class Poster extends StatelessWidget {
             child: Hero(
               tag: url ?? "url",
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(0.0),
+                borderRadius: BorderRadius.only(bottomLeft: Radius.elliptical(60, 60), bottomRight: Radius.elliptical(60, 60)),
                 child: FadeInImage(
                   fadeInDuration: Duration(milliseconds: 200),
                   image: NetworkImage(image),

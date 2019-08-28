@@ -39,7 +39,7 @@ class TvShowCard extends StatelessWidget {
                     child: FadeInImage(
                       image: NetworkImage(item.image),
                       fit: BoxFit.fill,
-                      placeholder: NetworkImage(Constants.PLACEHOLDER_TV_SHOW),
+                      placeholder: NetworkImage(Constants.PLACEHOLDER_EPISODE),
                     ),
                   ),
                 ),

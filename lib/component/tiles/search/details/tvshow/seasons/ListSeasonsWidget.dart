@@ -28,7 +28,7 @@ class ListSeasonsWidget extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   final Season season = seasons[index];
                   return Card(
-                    color: Colors.black26,
+                    color: Colors.white12,
                     margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                     child: ExpansionTile(
                       title: Text(

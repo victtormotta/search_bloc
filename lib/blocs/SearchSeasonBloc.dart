@@ -16,13 +16,6 @@ class SearchSeasonBloc extends Bloc {
     apiResultFlux = searchFlux
         .distinct()
         .asyncMap(new Service().searchSeasons)
-        .switchMap((listSeasonFlux) => Observable.just(getSeasons(listSeasonFlux)));
-  }
-
-  ListSeason getSeasons(ListSeason listSeason){
-
-    searchFlux.listen((valor) => searchEpisodeBloc.searchEvent.add(valor));
-
-    return listSeason;
+        .switchMap((listSeasonFlux) => Observable.just(listSeasonFlux));
   }
 }

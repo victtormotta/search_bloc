@@ -15,7 +15,7 @@ class CardEpisodes extends StatelessWidget {
       SizedBox(
         height: 200.0,
         child: ListView.builder(
-            padding: EdgeInsets.fromLTRB(15, 5, 15, 5),
+            padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
