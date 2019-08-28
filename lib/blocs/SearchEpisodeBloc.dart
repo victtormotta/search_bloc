@@ -2,6 +2,8 @@ import 'package:tvmaze_search_bloc/blocs/Bloc.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchSeasonBloc.dart';
 import 'package:tvmaze_search_bloc/model/episode/Episode.dart';
 import 'package:tvmaze_search_bloc/model/episode/list/ListEpisode.dart';
+import 'package:tvmaze_search_bloc/model/season/Season.dart';
+import 'package:tvmaze_search_bloc/model/season/list/ListSeason.dart';
 import '../services/data/Service.dart';
 import 'package:rxdart/rxdart.dart';
 /*
@@ -9,23 +11,19 @@ import 'package:rxdart/rxdart.dart';
  */
 class SearchEpisodeBloc extends Bloc {
 
-  final _searchController = new BehaviorSubject<String>();
-  Observable<String> get searchFlux => _searchController.stream;
-  Sink<String> get searchEvent => _searchController.sink;
   Observable<ListEpisode> apiResultFlux;
 
-  SearchEpisodeBloc(seasonNumber){
-
-//    if(apiResultFlux != null) print(apiResultFlux.length);
-
+  SearchEpisodeBloc(List<Season> listSeason){
     apiResultFlux = searchFlux
         .distinct()
         .asyncMap(new Service().searchEpisodes)
-        .switchMap((valor) => Observable.just(getEpisodesBySeason(valor, seasonNumber)));
+        .switchMap((listEpisodeFlux) => Observable.just(getEpisodesBySeason(listEpisodeFlux, listSeason)));
   }
 
-  ListEpisode getEpisodesBySeason(ListEpisode listEpisode, String seasonNumber){
-    listEpisode.episodes.removeWhere((episode) => episode.season != seasonNumber);
+  ListEpisode getEpisodesBySeason(ListEpisode listEpisode, List<Season> listSeason){
+    for(Season season in listSeason)
+      listEpisode.episodes.removeWhere((episode) => episode.season != season.number);
+
     return listEpisode;
   }
 }
