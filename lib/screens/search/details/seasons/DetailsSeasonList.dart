@@ -6,15 +6,18 @@ import 'package:tvmaze_search_bloc/model/season/list/ListSeason.dart';
 
 class DetailsSeasonList extends StatelessWidget {
   final String id;
-  final SearchSeasonBloc searchSeasonBlocBloc;
 
-  DetailsSeasonList(this.id, this.searchSeasonBlocBloc);
+  DetailsSeasonList(this.id);
 
   @override
   Widget build(BuildContext context) {
     print('DetailsSeason redraw');
+
+    final SearchSeasonBloc searchSeasonBloc = SearchSeasonBloc();
+    searchSeasonBloc.searchEvent.add(id);
+
     return StreamBuilder<ListSeason>(
-        stream: searchSeasonBlocBloc.apiResultFlux,
+        stream: searchSeasonBloc.apiResultFlux,
         builder:
             (BuildContext context, AsyncSnapshot<ListSeason> snapshot) {
           return snapshot.hasData

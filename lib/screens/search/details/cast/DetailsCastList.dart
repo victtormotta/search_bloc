@@ -5,13 +5,17 @@ import 'package:tvmaze_search_bloc/model/cast/list/ListCast.dart';
 import 'package:tvmaze_search_bloc/component/tiles/search/details/tvshow/cast/ListCard.dart';
 
 class DetailsCastList extends StatelessWidget {
-  final SearchCastBloc searchCastBloc;
+  final String id;
 
-  DetailsCastList(this.searchCastBloc);
+  DetailsCastList(this.id);
 
   @override
   Widget build(BuildContext context) {
     print('DetailsCastBloc redraw');
+
+    final SearchCastBloc searchCastBloc = SearchCastBloc();
+    searchCastBloc.searchEvent.add(id);
+
     return StreamBuilder<ListCast>(
         stream: searchCastBloc.apiResultFlux,
         builder:

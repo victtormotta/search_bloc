@@ -32,13 +32,6 @@ class DetailsPage extends StatelessWidget {
 
     /*add id of tvshow to be listen on Bloc's Sink*/
 
-    final SearchCastBloc searchCastBloc = SearchCastBloc();
-    searchCastBloc.searchEvent.add(item.id);
-
-    final SearchSeasonBloc searchSeasonBloc = SearchSeasonBloc();
-    searchSeasonBloc.searchEvent.add(item.id);
-
-
     return CupertinoPageScaffold(
       backgroundColor: Colors.black12,
       navigationBar: CupertinoNavigationBar(
@@ -65,9 +58,11 @@ class DetailsPage extends StatelessWidget {
               Synopsis(
                   item.summary),
               TitleCast(size),
-              DetailsCastList(searchCastBloc),
+              DetailsCastList(
+                  item.id),
               TitleEpisodes(size),
-              DetailsSeasonList(item.id, searchSeasonBloc),
+              DetailsSeasonList(
+                  item.id),
             ],
           ),
         ),

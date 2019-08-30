@@ -12,6 +12,7 @@ import 'package:rxdart/rxdart.dart';
 class SearchEpisodeBloc extends Bloc {
 
   Observable<ListEpisode> apiResultFlux;
+  ListEpisode get apiResultFluxValue => apiResultFlux.shareValue().value;
 
   SearchEpisodeBloc(String seasonNumber){
 
