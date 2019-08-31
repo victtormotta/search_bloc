@@ -60,22 +60,6 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
     }
   }
 
-
-  Future<void> _searchEpisodes(String showId) async {
-    try {
-      Response response =
-      await Dio().get(Constants.URL_EPISODES(showId));
-
-      List<Episode> searchedItems = ListEpisode.fromJson(response.data).episodes;
-
-      setState(() {
-        _episodesResponse = searchedItems;
-      });
-    } on DioError catch (e) {
-      print(e);
-    }
-  }
-
   Future<void> _searchSeasons(String showId) async {
     try {
       Response response =
@@ -91,6 +75,20 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
     }
   }
 
+  Future<void> _searchEpisodes(String showId) async {
+    try {
+      Response response =
+      await Dio().get(Constants.URL_EPISODES(showId));
+
+      List<Episode> searchedItems = ListEpisode.fromJson(response.data).episodes;
+
+      setState(() {
+        _episodesResponse = searchedItems;
+      });
+    } on DioError catch (e) {
+      print(e);
+    }
+  }
   /* END SEARCH */
 
   @override
@@ -99,7 +97,7 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
     Size size = MediaQuery.of(context).size;
 
     return CupertinoPageScaffold(
-      backgroundColor: Colors.white12,
+      backgroundColor: Colors.black12,
       navigationBar: CupertinoNavigationBar(
         previousPageTitle: "Back",
         backgroundColor: Colors.grey[800],
@@ -269,7 +267,7 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
     return Container(
       margin: EdgeInsets.all(4),
       decoration: BoxDecoration(
-          color: Colors.black45,
+          color: Colors.white12,
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(30),
               topLeft: Radius.circular(30),
@@ -465,7 +463,7 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
                   }
 
                   return Card(
-                      color: Colors.black26,
+                      color: Colors.white12,
                       margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
                       child: ExpansionTile(
 

@@ -97,7 +97,7 @@ class _MyHorizontalSwiper extends State<HorizontalSwiper> {
               ?
             Column(children: <Widget>[
               Container(
-                  height: 480,
+                  height: size.height / 2,
                   child: Swiper(
                     itemBuilder: (BuildContext context, int index) {
                       TvShow item = _tvShowResponse[index];
@@ -106,29 +106,153 @@ class _MyHorizontalSwiper extends State<HorizontalSwiper> {
                     },
                     indicatorLayout: PageIndicatorLayout.COLOR,
                     autoplay: true,
-                    itemCount: _tvShowResponse.length,
+                    itemCount: 5,
                     pagination: SwiperPagination(),
                     containerHeight: 0.9,
                     itemWidth: size.width/1.25,
                     itemHeight: size.height,
                     layout: SwiperLayout.STACK,
                   )),
+              Container(
+                height: 40,
+              ),
+              Container(
+                width: size.width + 50,
+                child: Column(
+                  children: <Widget>[
+                    Container(height: 20),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            "   " + "MOST SEEN",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey[200],
+                                fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(height: 10),
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                    SizedBox(
+                      height: 170,
+                      child: ListView.builder(
+                          padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 4,
+                          itemBuilder: (BuildContext context, int index) {
+                            _tvShowResponse.shuffle();
+                            TvShow item = _tvShowResponse[index];
+
+                            return Card(
+                                color: Colors.black26,
+                                margin:
+                                EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+                                elevation: 4.0,
+                                child: GestureDetector(
+                                    child: Hero(
+                                      tag: DateTime.now(),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8.0),
+                                        child: FadeInImage(
+                                          height: 150,
+                                          width: 170,
+                                          image: NetworkImage(item.image),
+                                          fit: BoxFit.cover,
+                                          placeholder:
+                                          NetworkImage(Constants.PLACEHOLDER_EPISODE),
+                                        ),
+                                      ),
+                                    ),
+                                    onTap: () => Navigator.push(
+                                        context, FadeRoute(page: DetailsWidget(item: item)))));
+                          }),
+                    ),
+                    Container(
+                      height: 20,
+                    )
+                  ])),
+
+              Container(
+                height: 10,
+              ),
+              Container(
+                width: size.width + 50,
+                child: Column(
+                  children: <Widget>[
+                    Container(height: 20),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Container(
+                          child: Text(
+                            "   " + "RECENTLY ADDED",
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Colors.grey[200],
+                                fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(height: 10),
+                  ],
+                ),
+              ),
+              SingleChildScrollView(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+                    SizedBox(
+                      height: 170,
+                      child: ListView.builder(
+                          padding: EdgeInsets.fromLTRB(8, 5, 8, 5),
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 4,
+                          itemBuilder: (BuildContext context, int index) {
+                            _tvShowResponse.shuffle();
+                            TvShow item = _tvShowResponse[index];
+
+                            return Card(
+                                color: Colors.black26,
+                                margin:
+                                EdgeInsets.symmetric(horizontal: 4.0, vertical: 8.0),
+                                elevation: 4.0,
+                                child: GestureDetector(
+                                    child: Hero(
+                                      tag: DateTime.now(),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(8.0),
+                                        child: FadeInImage(
+                                          height: 150,
+                                          width: 170,
+                                          image: NetworkImage(item.image),
+                                          fit: BoxFit.cover,
+                                          placeholder:
+                                          NetworkImage(Constants.PLACEHOLDER_EPISODE),
+                                        ),
+                                      ),
+                                    ),
+                                    onTap: () => Navigator.push(
+                                        context, FadeRoute(page:  DetailsWidget(item: item)))));
+                          }),
+                    ),
+                    Container(
+                      height: 20,
+                    )
+                  ])),
               Container(height: 50,),
-//              Container(
-//                  child: Swiper(
-//                    itemBuilder: (BuildContext context, int index) {
-//                      TvShow item = _tvShowResponse[index];
-//                      String tag_name = item.url + "_recomendations";
-//                      return _items(item, tag_name);
-//                    },
-//                    indicatorLayout: PageIndicatorLayout.COLOR,
-//                    autoplay: true,
-//                    itemCount: _tvShowResponse.length,
-//                    containerHeight: 0.9,
-//                    itemWidth: size.width/2,
-//                    itemHeight: size.height/4,
-//                    layout: SwiperLayout.STACK,
-//                  )),
               Container(height: 30,),
             ],)
               : Container(height: 500, child: Center(
