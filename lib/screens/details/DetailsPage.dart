@@ -7,7 +7,7 @@ import 'package:tvmaze_search/model/episode/list/ListEpisode.dart';
 import 'package:tvmaze_search/model/season/Season.dart';
 import 'package:tvmaze_search/model/season/list/ListSeason.dart';
 import 'package:tvmaze_search/transition/FadeRoute.dart';
-import 'package:tvmaze_search/model/cast/list/ListCastTvMaze.dart';
+import 'package:tvmaze_search/model/cast/list/ListCast.dart';
 import 'package:tvmaze_search/model/cast/Cast.dart';
 import 'package:tvmaze_search/model/tvshow/TvShow.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +50,7 @@ class _MyDetailsPageState extends State<DetailsPage> {
       Response response =
       await Dio().get(Constants.URL_SEARCH_CAST(showId));
 
-      List<Cast> searchedItems = ListCastTvMaze.fromJson(response.data['_embedded']['cast']).casts;
+      List<Cast> searchedItems = ListCast.fromJson(response.data['_embedded']['cast']).casts;
 
       setState(() {
         _castResponse = searchedItems;
