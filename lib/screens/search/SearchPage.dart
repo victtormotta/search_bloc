@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search/screens/details/DetailsPage.dart';
 import 'package:tvmaze_search/transition/FadeRoute.dart';
-import 'package:tvmaze_search/model/tvshow/list/ListFromSearchTvMaze.dart';
+import 'package:tvmaze_search/model/tvshow/list/ListTvShow.dart';
 import 'package:tvmaze_search/model/tvshow/TvShow.dart';
 import 'package:tvmaze_search/constants/Constants.dart' as Constants;
 
@@ -28,7 +28,7 @@ class _MySearchPageState extends State<SearchPage> {
       Response response =
           await Dio().get(Constants.URL_SEARCH(text));
 
-      List<TvShow> searchedItems = ListFromSearchTvMaze.fromJson(response.data).tvShows;
+      List<TvShow> searchedItems = ListTvShow.fromJson(response.data).tvShows;
 
       setState(() {
         _tvShowResponse = searchedItems;
