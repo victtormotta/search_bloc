@@ -17,16 +17,16 @@ import 'package:tvmaze_search/constants/Constants.dart' as Constants;
   Class responsible for display tvshow's details; such as synopis, cast, etc;
  */
 
-class DetailsWidget extends StatefulWidget {
-  DetailsWidget({Key key, this.item}) : super(key: key);
+class DetailsPage extends StatefulWidget {
+  DetailsPage({Key key, this.item}) : super(key: key);
 
   final TvShow item;
 
   @override
-  _MyDetailsWidgetState createState() => _MyDetailsWidgetState();
+  _MyDetailsPageState createState() => _MyDetailsPageState();
 }
 
-class _MyDetailsWidgetState extends State<DetailsWidget> {
+class _MyDetailsPageState extends State<DetailsPage> {
 
   List<Cast> _castResponse = List<Cast>();
   List<Episode> _episodesResponse = List<Episode>();

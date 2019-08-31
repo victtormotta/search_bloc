@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search/tiles/swiper/HorizontalSwiper.dart';
-
+import 'package:tvmaze_search/screens/swiper/HomePage.dart';
 import 'package:tvmaze_search/screens/search/SearchPage.dart';
 
 
-class HomeScreen extends StatelessWidget {
+class Tabs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class HomeScreen extends StatelessWidget {
             switch (index) {
               case 0:
                 return CupertinoTabView(
-                  builder: (BuildContext context) => HorizontalSwiper(),
+                  builder: (BuildContext context) => HomePage(),
                   defaultTitle: 'Horizontal Swiper',
                 );
                 break;
@@ -56,13 +55,13 @@ class HomeScreen extends StatelessWidget {
                 break;
               case 2:
                 return CupertinoTabView(
-                  builder: (BuildContext context) => HorizontalSwiper(),
+                  builder: (BuildContext context) => HomePage(),
                   defaultTitle: 'Discover Page',
                 );
                 break;
               case 3:
                 return CupertinoTabView(
-                  builder: (BuildContext context) => HorizontalSwiper(),
+                  builder: (BuildContext context) => HomePage(),
                   defaultTitle: 'Settings Page',
                 );
                 break;

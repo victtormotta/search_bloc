@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search/screens/HomeScreen.dart';
+import 'package:tvmaze_search/screens/Tabs.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 //          home: HomePageBloc(title: 'By Tv Maze'),
 //        home: HomePage(title: 'By Tv Maze'),
 //      home: HorizontalSwiper(title: 'HorizontalSwiper'),
-      home: HomeScreen(),
+      home: Tabs(),
       debugShowCheckedModeBanner: false,
     );
   }

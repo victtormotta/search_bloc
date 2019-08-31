@@ -4,23 +4,22 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:tvmaze_search/model/tvshow/list/ListFromSearchTvMaze.dart';
 import 'package:tvmaze_search/model/tvshow/TvShow.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-import 'package:tvmaze_search/screens/search/details/tvshow/DetailsWidget.dart';
+import 'package:tvmaze_search/screens/details/DetailsPage.dart';
 import 'package:tvmaze_search/transition/FadeRoute.dart';
 import 'package:tvmaze_search/constants/Constants.dart' as Constants;
 
-class HorizontalSwiper extends StatefulWidget {
-  HorizontalSwiper({Key key, this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHorizontalSwiper createState() => _MyHorizontalSwiper();
+  _MyHomePage createState() => _MyHomePage();
 }
 
-class _MyHorizontalSwiper extends State<HorizontalSwiper> {
+class _MyHomePage extends State<HomePage> {
   List<TvShow> _tvShowResponse = List<TvShow>();
 
   @override
@@ -66,7 +65,7 @@ class _MyHorizontalSwiper extends State<HorizontalSwiper> {
           ),
           onTap: () => Navigator.push(
               context,
-              FadeRoute(page: DetailsWidget(item: item))
+              FadeRoute(page: DetailsPage(item: item))
           )
           ,
         ),
@@ -175,7 +174,7 @@ class _MyHorizontalSwiper extends State<HorizontalSwiper> {
                                       ),
                                     ),
                                     onTap: () => Navigator.push(
-                                        context, FadeRoute(page: DetailsWidget(item: item)))));
+                                        context, FadeRoute(page: DetailsPage(item: item)))));
                           }),
                     ),
                     Container(
@@ -245,7 +244,7 @@ class _MyHorizontalSwiper extends State<HorizontalSwiper> {
                                       ),
                                     ),
                                     onTap: () => Navigator.push(
-                                        context, FadeRoute(page:  DetailsWidget(item: item)))));
+                                        context, FadeRoute(page:  DetailsPage(item: item)))));
                           }),
                     ),
                     Container(

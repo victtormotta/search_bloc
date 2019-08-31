@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:tvmaze_search/screens/search/details/tvshow/DetailsWidget.dart';
+import 'package:tvmaze_search/screens/details/DetailsPage.dart';
 import 'package:tvmaze_search/transition/FadeRoute.dart';
 import 'package:tvmaze_search/model/tvshow/list/ListFromSearchTvMaze.dart';
 import 'package:tvmaze_search/model/tvshow/TvShow.dart';
@@ -97,7 +97,7 @@ class _MySearchPageState extends State<SearchPage> {
   Widget _tvShowCard(TvShow item) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(FadeRoute(page: DetailsWidget(item:item)));
+        Navigator.of(context).push(FadeRoute(page: DetailsPage(item:item)));
       },
       child: Card(
           color: Colors.transparent,
