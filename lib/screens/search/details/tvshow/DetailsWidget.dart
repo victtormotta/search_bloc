@@ -265,7 +265,7 @@ class _MyDetailsWidgetState extends State<DetailsWidget> {
   Widget _synopsis(size){
     print('synopsis redraw');
     return Container(
-      margin: EdgeInsets.all(4),
+      margin: EdgeInsets.all(8),
       decoration: BoxDecoration(
           color: Colors.white12,
           borderRadius: BorderRadius.only(
