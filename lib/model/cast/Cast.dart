@@ -13,8 +13,8 @@ class Cast {
   // construtor de fábrica que recebe um mapa de string dinânico e retorna um objeto
   // da mesma classe;
   factory Cast.fromJson(Map<String, dynamic> json) {
-    print(json);
 
+    /* BEGIN MÉTODOS DE VALIDÇÃO */
     String returnIdValue(json) {
       if(json.containsKey("person"))
         return json["person"]["id"].toString();
@@ -52,6 +52,9 @@ class Cast {
       return Constants.PLACEHOLDER_CAST;
     }
 
+    /* END MÉTODOS DE VALIDÇÃO */
+
+    // retorna o objeto criado com os valores retornados
     return Cast(
       id: returnIdValue(json),
       name: returnNameValue(json),

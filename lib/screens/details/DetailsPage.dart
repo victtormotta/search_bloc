@@ -37,7 +37,7 @@ class _MyDetailsPageState extends State<DetailsPage> {
   @override
   initState(){
     if (widget.item.id != showId) {
-      _search(widget.item.id);
+      _searchCast(widget.item.id);
       _searchSeasons(widget.item.id);
       showId = widget.item.id;
     }
@@ -45,7 +45,7 @@ class _MyDetailsPageState extends State<DetailsPage> {
 
   /* BEGIN SEARCH */
 
-  Future<void> _search(String showId) async {
+  Future<void> _searchCast(String showId) async {
     try {
       Response response =
       await Dio().get(Constants.URL_SEARCH_CAST(showId));
@@ -454,7 +454,7 @@ class _MyDetailsPageState extends State<DetailsPage> {
 
                   final episodesByIndex = [];
 
-                  _searchEpisodes(widget.item.id);
+                  _searchEpisodes(showId);
 
                   // percorre a lista, se nao tiver na indexSeason, remove o episode
                   for(Episode episode in _episodesResponse){
