@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/model/episode/Episode.dart';
 import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
-class CardEpisodes extends StatelessWidget {
-  final List<Episode> episodesByIndex;
+class ListEpisodesCard extends StatelessWidget {
+  final List<Episode> episodes;
 
-  CardEpisodes(this.episodesByIndex);
+  ListEpisodesCard(this.episodes);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,9 @@ class CardEpisodes extends StatelessWidget {
             physics: BouncingScrollPhysics(),
             shrinkWrap: true,
             scrollDirection: Axis.vertical,
-            itemCount: episodesByIndex.length,
+            itemCount: episodes.length,
             itemBuilder: (BuildContext context, int index) {
-              final Episode item = episodesByIndex[index];
+              final Episode item = episodes[index];
               return Card(
                 color: Colors.black26,
                 margin: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),

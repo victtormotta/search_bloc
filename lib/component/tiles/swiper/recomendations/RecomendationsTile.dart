@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:tvmaze_search_bloc/model/tvshow/TvShow.dart';
 import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
-
-import '../../../../screens/search/details/tvshow/DetailsPage.dart';
-import '../../../transition/FadeRoute.dart';
 import 'RecomendationHero.dart';
+import 'RecomendationsScroll.dart';
 
 class RecomendationsTile extends StatelessWidget {
   final List<TvShow> listTvShows;
@@ -35,7 +32,9 @@ class RecomendationsTile extends StatelessWidget {
               itemHeight: size.height,
               layout: SwiperLayout.STACK,
             )),
-        Container(
+        RecomendationsScroll(listTvShows, size, "MOST SEEN"),
+        RecomendationsScroll(listTvShows, size ,"RECENTLY ADDED"),
+/*        Container(
           height: 40,
         ),
         Container(
@@ -173,7 +172,7 @@ class RecomendationsTile extends StatelessWidget {
               Container(
                 height: 20,
               )
-            ])),
+            ])),*/
       ],
     );
   }

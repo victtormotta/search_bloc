@@ -6,16 +6,16 @@ import 'package:tvmaze_search_bloc/component/tiles/swiper/LogoTvMaze.dart';
 import 'package:tvmaze_search_bloc/component/tiles/swiper/recomendations/RecomendationsTile.dart';
 import 'package:tvmaze_search_bloc/model/tvshow/list/ListTvShow.dart';
 
-class HorizontalSwiper extends StatefulWidget {
-  HorizontalSwiper({Key key, this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _HorizontalSwiperBloc createState() => _HorizontalSwiperBloc();
+  _HomePageBloc createState() => _HomePageBloc();
 }
 
-class _HorizontalSwiperBloc extends State<HorizontalSwiper> {
+class _HomePageBloc extends State<HomePage> {
   // BEGIN BLOC
   LoadBloc _loadBloc = new LoadBloc();
 

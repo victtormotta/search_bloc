@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/component/transition/FadeRoute.dart';
 import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
-import 'PosterFullSize.dart';
+import 'package:tvmaze_search_bloc/component/tiles/details/PosterFullSize.dart';
 
 class Poster extends StatelessWidget {
   final Size size;

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:tvmaze_search_bloc/component/transition/FadeRoute.dart';
 import 'package:tvmaze_search_bloc/model/tvshow/TvShow.dart';
-import 'package:tvmaze_search_bloc/screens/search/details/tvshow/DetailsPage.dart';
+import 'package:tvmaze_search_bloc/screens/details/DetailsPage.dart';
 import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
 class RecomendationHero extends StatelessWidget{

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/blocs/SearchEpisodeBloc.dart';
 import 'package:tvmaze_search_bloc/model/season/Season.dart';
-import 'package:tvmaze_search_bloc/screens/search/details/episodes/DetailsEpisodeList.dart';
+import 'package:tvmaze_search_bloc/screens/details/episodes/DetailsEpisodeList.dart';
 
-import 'CardSeasons.dart';
-
-class ListSeasonsWidget extends StatelessWidget {
+class ListSeasonsCard extends StatelessWidget {
   final String id;
   final List<Season> seasons;
 
-  ListSeasonsWidget(this.id, this.seasons);
+  ListSeasonsCard(this.id, this.seasons);
 
   @override
   Widget build(BuildContext context) {

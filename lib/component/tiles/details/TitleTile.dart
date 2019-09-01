@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-class TitleCast extends StatelessWidget {
+class TitleTile extends StatelessWidget {
 
   final Size size;
+  final String name;
 
-  TitleCast(this.size);
+  TitleTile(this.size, this.name);
 
   @override
   Widget build(BuildContext context) {
-    print('titleCast redraw');
+    print('TitleTile $name redraw');
     return Container(
       width: size.width + 50,
       child: Column(
@@ -19,7 +20,7 @@ class TitleCast extends StatelessWidget {
             children: <Widget>[
               Container(
                 child: Text(
-                  "   " + "CAST",
+                  "   " + "$name",
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       fontWeight: FontWeight.w600,

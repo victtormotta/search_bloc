@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:tvmaze_search_bloc/model/cast/Cast.dart';
 import 'package:tvmaze_search_bloc/constants/Constants.dart' as Constants;
 
-class ListCard extends StatelessWidget {
+class ListCastCard extends StatelessWidget {
   final List<Cast> items;
 
-  ListCard(this.items);
+  ListCastCard(this.items);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,6 @@ class ListCard extends StatelessWidget {
                   child: 
                   Stack(
                     children: <Widget>[
-
                        Center(
                             child: AspectRatio(
                           aspectRatio: 0.7,
@@ -46,7 +45,6 @@ class ListCard extends StatelessWidget {
                             ),
                           ),
                         )),
-                       
                        Align(
                             alignment: Alignment.bottomCenter,
                             child: Card(
@@ -65,8 +63,6 @@ class ListCard extends StatelessWidget {
                                 ),
                             ),
                        )
-
-
                     ],
                   )
                 );
